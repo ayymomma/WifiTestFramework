@@ -10,10 +10,10 @@ class TestCasesFrame(QFrame):
         self.setupUi()
 
     def setupUi(self):
-        self.setGeometry(QRect(640, -2, 642, 550))
-        self.setMinimumSize(QSize(642, 550))
-        self.setMaximumSize(QSize(642, 550))
-        self.setStyleSheet("background-color: rgb(59, 67, 80);"
+        self.setGeometry(QRect(640, -2, 642, 500))
+        self.setMinimumSize(QSize(642, 500))
+        self.setMaximumSize(QSize(642, 500))
+        self.setStyleSheet("background-color: #30363F;"
                            "border-width: 2px;"
                            "border-style: solid;"
-                           "border-color: #FF8A00")
+                           "border-color: #E47900")

@@ -10,10 +10,10 @@ class ConsoleLogFrame(QFrame):
         self.setupUi()
 
     def setupUi(self):
-        self.setGeometry(QRect(-2, 548, 1284, 222))
-        self.setMinimumSize(QSize(1284, 222))
-        self.setMaximumSize(QSize(1284, 222))
-        self.setStyleSheet("background-color: rgb(59, 67, 80);"
+        self.setGeometry(QRect(-2, 498, 1284, 272))
+        self.setMinimumSize(QSize(1284, 272))
+        self.setMaximumSize(QSize(1284, 272))
+        self.setStyleSheet("background-color: #30363F;"
                            "border-width: 2px;"
                            "border-style: solid;"
                            "border-color: #FF8A00")

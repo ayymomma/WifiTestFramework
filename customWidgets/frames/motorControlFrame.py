@@ -4,6 +4,8 @@ from PyQt5.QtCore import QRect, QSize, Qt
 from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtWidgets import QFrame, QLabel
 
+from customWidgets.components.customButton import CustomButton
+from customWidgets.components.customLineEdit import CustomLineEdit
 from customWidgets.components.customSlider import CustomSlider
 
 
@@ -17,6 +19,9 @@ class MotorControlFrame(QFrame):
         self.sliderName = QLabel(self)
         self.motorDirection = QLabel(self)
         self.speedSlider = CustomSlider(self)
+        self.clockwiseButton = CustomButton(self, "Clockwise")
+        self.counterClockwiseButton = CustomButton(self, "Counter clockwise")
+        self.speedLineEdit = CustomLineEdit(self)
 
         self.setupUi()
 
@@ -28,21 +33,21 @@ class MotorControlFrame(QFrame):
         font.setWeight(75)
 
         # frame settings
-        self.setGeometry(QRect(-2, -2, 642, 550))
-        self.setMinimumSize(QSize(642, 550))
-        self.setMaximumSize(QSize(642, 550))
-        self.setStyleSheet("background-color: rgb(59, 67, 80);"
+        self.setGeometry(QRect(-2, -2, 642, 500))
+        self.setMinimumSize(QSize(642, 500))
+        self.setMaximumSize(QSize(642, 500))
+        self.setStyleSheet("background-color: #30363F;"
                            "border-width: 2px;"
                            "border-style: solid;"
-                           "border-color: #FF8A00;")
+                           "border-color: #E47900;")
 
         # continental logo
-        self.logoImage.setGeometry(QRect(185, 400, 320, 120))
+        self.logoImage.setGeometry(QRect(300, 320, 320, 120))
         self.logoImage.setStyleSheet("border-style: none")
         self.setLogoImage("conti.png")
 
         # frame name
-        self.frameName.setGeometry(QRect(262, 10, 120, 30))
+        self.frameName.setGeometry(QRect(262, 30, 120, 30))
         self.frameName.setStyleSheet("text-align: center;"
                                      "border-style: none;"
                                      "color: rgb(181, 181, 181)")
@@ -58,7 +63,7 @@ class MotorControlFrame(QFrame):
         self.sliderName.setText("Motor speed")
 
         # direction name
-        self.motorDirection.setGeometry(QRect(50, 280, 150, 30))
+        self.motorDirection.setGeometry(QRect(50, 300, 150, 30))
         self.motorDirection.setStyleSheet("text-align: center;"
                                           "border-style: none;"
                                           "color: rgb(181, 181, 181)")
@@ -70,6 +75,28 @@ class MotorControlFrame(QFrame):
         self.speedSlider.setSliderStyle()
         self.speedSlider.setMinimumWidth(400)
         self.speedSlider.setOrientation(Qt.Horizontal)
+
+        # button clockwise
+        font.setPointSize(12)
+        self.clockwiseButton.setGeometry(QRect(50, 340, 150, 35))
+        self.clockwiseButton.setButtonStyle()
+        self.clockwiseButton.setFont(font)
+        font.setPointSize(14)
+
+        # button counterclockwise
+        font.setPointSize(12)
+        self.counterClockwiseButton.setGeometry(QRect(50, 390, 150, 35))
+        self.counterClockwiseButton.setButtonStyle()
+        self.counterClockwiseButton.setFont(font)
+        font.setPointSize(14)
+
+        # line edit motor speed
+        font.setPointSize(10)
+        self.speedLineEdit.setGeometry(50, 220, 100, 35)
+        self.speedLineEdit.setLineEditStyle()
+        self.speedLineEdit.setFont(font)
+        font.setPointSize(14)
+
 
     def setLogoImage(self, photoName):
         pixmap = QPixmap("resources" + os.path.sep + "images" + os.path.sep + photoName)

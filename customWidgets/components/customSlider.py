@@ -32,13 +32,13 @@ class CustomSlider(QSlider):
                        bgSize=20,
                        bgRadius=10,
                        bgColor="#1e2229",
-                       bgColorHover="#FFF",
+                       bgColorHover="rgb(181, 181, 181)",
                        handleMargin=2,
                        handleSize=16,
                        handleRadius=8,
-                       handleColor="#568af2",
-                       handleColorHover="#6c99f4",
-                       handleColorPressed="#3f6fd1"
+                       handleColor="#E47900",
+                       handleColorHover="#FF9C2B",
+                       handleColorPressed="#A57947"
                        ):
         adjustedStyle = style.format(
             margin=margin,
