@@ -99,4 +99,4 @@ class TestCasesFrame(QFrame):
         self.progressBar.setGeometry(QRect(80, 400, 480, 30))
         self.progressBar.setProgressBarStyle()
         self.progressBar.setFont(font)
-        self.progressBar.updateBar(5)
+        self.progressBar.updateBar(1)

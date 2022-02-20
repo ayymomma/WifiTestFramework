@@ -2,6 +2,7 @@ import time
 
 from PyQt5.QtWidgets import QProgressBar
 
+
 style = """
 QProgressBar {{
     border-style: solid;

@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QPushButton
 
+
 style = """
 QPushButton {{
     background-color: {bgColor};
