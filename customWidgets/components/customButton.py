@@ -27,6 +27,7 @@ QPushButton:pressed {{
 }}
 """
 
+
 class CustomButton(QPushButton):
     def __init__(self, container, buttonName):
         super(CustomButton, self).__init__(container)
