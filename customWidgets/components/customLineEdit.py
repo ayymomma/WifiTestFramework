@@ -8,7 +8,6 @@ QLineEdit {{
     padding-left: {paddingSize}px;
     padding-right: {paddingSize}px;
     background-color: {bgColor};
-    
 }}
 QLineEdit:hover {{
     border: {borderSize}px solid {borderColorHover};
