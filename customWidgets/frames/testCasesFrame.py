@@ -6,6 +6,7 @@ from customWidgets.components.customButton import CustomButton
 from customWidgets.components.customCheckBox import CustomCheckBox
 from customWidgets.components.customLineEdit import CustomLineEdit
 from customWidgets.components.customProgressBar import CustomProgressBar
+from customWidgets.windows.temperatureWindow import TemperatureWindow
 
 
 class TestCasesFrame(QFrame):
@@ -26,6 +27,9 @@ class TestCasesFrame(QFrame):
         self.temperatureCheckBox = CustomCheckBox(self)
         self.voltageCheckBox = CustomCheckBox(self)
         self.speedCheckBox = CustomCheckBox(self)
+
+        self.temperatureWindow = TemperatureWindow(container)
+        self.temperatureWindow.show()
         self.setupUi()
 
     def setupUi(self):
@@ -95,7 +99,7 @@ class TestCasesFrame(QFrame):
         self.maxTemperatureName.setFont(font)
         self.maxTemperatureName.setText("Maximum temperature")
 
-        # line edit max temperature
+        # horizontalLine edit max temperature
         font.setPointSize(10)
         self.maxTemperatureLineEdit.setGeometry(80, 320, 100, 35)
         self.maxTemperatureLineEdit.setLineEditStyle()

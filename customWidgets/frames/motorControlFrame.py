@@ -90,7 +90,7 @@ class MotorControlFrame(QFrame):
         self.counterClockwiseButton.setFont(font)
         font.setPointSize(14)
 
-        # line edit motor speed
+        # horizontalLine edit motor speed
         font.setPointSize(10)
         self.speedLineEdit.setGeometry(50, 220, 100, 35)
         self.speedLineEdit.setLineEditStyle()
