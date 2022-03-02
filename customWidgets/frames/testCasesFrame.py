@@ -116,16 +116,16 @@ class TestCasesFrame(QFrame):
         # start button
         font.setPointSize(12)
         self.startButton.setGeometry(QRect(120, 420, 150, 35))
-        self.startButton.setButtonStyle(bgColor="#01BF21", borderColor="#349E45", bgColorHover="#349E45",
-                                        bgColorPressed="#01BF21")
+        self.startButton.setButtonStyle(bgColor="#01BF21", borderColor="#349E45", bgColorHover="#1FEC1F",
+                                        bgColorPressed="#1FEC1F")
         self.startButton.setFont(font)
         font.setPointSize(14)
 
         # stop button
         font.setPointSize(12)
         self.stopButton.setGeometry(QRect(370, 420, 150, 35))
-        self.stopButton.setButtonStyle(bgColor="#E51616", borderColor="#903131", bgColorHover="#903131",
-                                       bgColorPressed="#E51616")
+        self.stopButton.setButtonStyle(bgColor="#E51616", borderColor="#903131", bgColorHover="#FF0000",
+                                       bgColorPressed="#FF0000")
         self.stopButton.setFont(font)
         font.setPointSize(14)
 
