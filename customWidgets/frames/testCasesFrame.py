@@ -20,7 +20,13 @@ class TestCasesFrame(QFrame):
         self.voltageName = QLabel(self)
         self.speedName = QLabel(self)
         self.maxTemperatureName = QLabel(self)
+        self.minTemperatureName = QLabel(self)
+        self.maxVoltageName = QLabel(self)
+        self.minVoltageName = QLabel(self)
         self.maxTemperatureLineEdit = CustomLineEdit(self)
+        self.minTemperatureLineEdit = CustomLineEdit(self)
+        self.maxVoltageLineEdit = CustomLineEdit(self)
+        self.minVoltageLineEdit = CustomLineEdit(self)
         self.progressBar = CustomProgressBar(self)
         self.startButton = CustomButton(self, "Start")
         self.stopButton = CustomButton(self, "Stop")
@@ -92,19 +98,67 @@ class TestCasesFrame(QFrame):
         self.speedName.setText("Speed test case")
 
         # max temperature name
-        self.maxTemperatureName.setGeometry(QRect(80, 280, 200, 30))
+        self.maxTemperatureName.setGeometry(QRect(80, 280, 80, 30))
         self.maxTemperatureName.setStyleSheet("text-align: center;"
                                               "border-style: none;"
                                               "color: rgb(181, 181, 181)")
         self.maxTemperatureName.setFont(font)
-        self.maxTemperatureName.setText("Maximum temperature")
+        self.maxTemperatureName.setText("Max temp")
+
+        # min temperature name
+        self.minTemperatureName.setGeometry(QRect(180, 280, 80, 30))
+        self.minTemperatureName.setStyleSheet("text-align: center;"
+                                              "border-style: none;"
+                                              "color: rgb(181, 181, 181)")
+        self.minTemperatureName.setFont(font)
+        self.minTemperatureName.setText("Min temp")
+
+        # max voltage name
+        self.maxVoltageName.setGeometry(QRect(280, 280, 100, 30))
+        self.maxVoltageName.setStyleSheet("text-align: center;"
+                                          "border-style: none;"
+                                          "color: rgb(181, 181, 181)")
+        self.maxVoltageName.setFont(font)
+        self.maxVoltageName.setText("Max voltage")
+
+        # min voltage name
+        self.minVoltageName.setGeometry(QRect(400, 280, 100, 30))
+        self.minVoltageName.setStyleSheet("text-align: center;"
+                                          "border-style: none;"
+                                          "color: rgb(181, 181, 181)")
+        self.minVoltageName.setFont(font)
+        self.minVoltageName.setText("Min voltage")
 
         # horizontalLine edit max temperature
         font.setPointSize(10)
-        self.maxTemperatureLineEdit.setGeometry(80, 320, 100, 35)
+        self.maxTemperatureLineEdit.setGeometry(80, 320, 80, 35)
         self.maxTemperatureLineEdit.setLineEditStyle()
         self.maxTemperatureLineEdit.setFont(font)
         self.maxTemperatureLineEdit.setText("28.0")
+        font.setPointSize(14)
+
+        # horizontalLine edit min temperature
+        font.setPointSize(10)
+        self.minTemperatureLineEdit.setGeometry(180, 320, 80, 35)
+        self.minTemperatureLineEdit.setLineEditStyle()
+        self.minTemperatureLineEdit.setFont(font)
+        self.minTemperatureLineEdit.setText("5.0")
+        font.setPointSize(14)
+
+        # horizontalLine edit max voltage
+        font.setPointSize(10)
+        self.maxVoltageLineEdit.setGeometry(280, 320, 80, 35)
+        self.maxVoltageLineEdit.setLineEditStyle()
+        self.maxVoltageLineEdit.setFont(font)
+        self.maxVoltageLineEdit.setText("18.0")
+        font.setPointSize(14)
+
+        # horizontalLine edit min voltage
+        font.setPointSize(10)
+        self.minVoltageLineEdit.setGeometry(400, 320, 80, 35)
+        self.minVoltageLineEdit.setLineEditStyle()
+        self.minVoltageLineEdit.setFont(font)
+        self.minVoltageLineEdit.setText("8.0")
         font.setPointSize(14)
 
         # progress bar
