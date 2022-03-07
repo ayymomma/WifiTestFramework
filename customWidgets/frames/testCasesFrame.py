@@ -14,6 +14,7 @@ class TestCasesFrame(QFrame):
     def __init__(self, container):
         super(TestCasesFrame, self).__init__(container)
 
+        # labels
         self.frameName = QLabel(self)
         self.temperatureName = QLabel(self)
         self.testcasesName = QLabel(self)
@@ -23,10 +24,14 @@ class TestCasesFrame(QFrame):
         self.minTemperatureName = QLabel(self)
         self.maxVoltageName = QLabel(self)
         self.minVoltageName = QLabel(self)
+
+        # line edits
         self.maxTemperatureLineEdit = CustomLineEdit(self)
         self.minTemperatureLineEdit = CustomLineEdit(self)
         self.maxVoltageLineEdit = CustomLineEdit(self)
         self.minVoltageLineEdit = CustomLineEdit(self)
+
+        # buttons and stuffs
         self.progressBar = CustomProgressBar(self)
         self.startButton = CustomButton(self, "Start")
         self.stopButton = CustomButton(self, "Stop")
@@ -34,8 +39,16 @@ class TestCasesFrame(QFrame):
         self.voltageCheckBox = CustomCheckBox(self)
         self.speedCheckBox = CustomCheckBox(self)
 
+        # flags
+        self.temperatureWindowOn = False
+        self.voltageWindowOn = False
+        self.speedWindowOn = False
+
+        # windows
         self.temperatureWindow = TemperatureWindow(container)
-        self.temperatureWindow.show()
+        self.voltageWindow = TemperatureWindow(container)
+        self.speedWindow = TemperatureWindow(container)
+
         self.setupUi()
 
     def setupUi(self):
@@ -194,3 +207,36 @@ class TestCasesFrame(QFrame):
         # speed check box
         self.speedCheckBox.setGeometry(QRect(80, 240, 32, 32))
         self.speedCheckBox.setCheckBoxStyle()
+
+        # checkbox callbacks
+        self.temperatureCheckBox.stateChanged.connect(lambda state: self.updateWindowFlag(state, "temperature"))
+        self.voltageCheckBox.stateChanged.connect(lambda state: self.updateWindowFlag(state, "voltage"))
+        self.speedCheckBox.stateChanged.connect(lambda state: self.updateWindowFlag(state, "speed"))
+
+        # buttons callbacks
+        self.startButton.clicked.connect(lambda: self.startTestButton())
+
+    def updateWindowFlag(self, state, flagName):
+        if flagName == "temperature":
+            if state == 2:
+                self.temperatureWindowOn = True
+            else:
+                self.temperatureWindowOn = False
+        if flagName == "voltage":
+            if state == 2:
+                self.voltageWindowOn = True
+            else:
+                self.voltageWindowOn = False
+        if flagName == "speed":
+            if state == 2:
+                self.speedWindowOn = True
+            else:
+                self.speedWindowOn = False
+
+    def startTestButton(self):
+        if self.temperatureWindowOn:
+            self.temperatureWindow.show()
+        if self.voltageWindowOn:
+            self.voltageWindow.show()
+        if self.speedWindowOn:
+            self.speedWindow.show()

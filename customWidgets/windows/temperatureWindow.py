@@ -35,6 +35,7 @@ class TemperatureWindow(QDialog):
 
     def setupUi(self):
         self.setObjectName("Temperature")
+        self.setWindowTitle("Temperature and Humidity")
         self.resize(278, 193)
         self.setMinimumSize(278, 193)
         self.setMaximumSize(278, 193)
