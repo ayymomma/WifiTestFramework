@@ -31,10 +31,12 @@ class TestCasesFrame(QFrame):
         self.maxVoltageLineEdit = CustomLineEdit(self)
         self.minVoltageLineEdit = CustomLineEdit(self)
 
-        # buttons and stuffs
+        # buttons and progress  bar
         self.progressBar = CustomProgressBar(self)
         self.startButton = CustomButton(self, "Start")
         self.stopButton = CustomButton(self, "Stop")
+
+        # checkboxes
         self.temperatureCheckBox = CustomCheckBox(self)
         self.voltageCheckBox = CustomCheckBox(self)
         self.speedCheckBox = CustomCheckBox(self)
@@ -70,7 +72,7 @@ class TestCasesFrame(QFrame):
                            """
                            )
 
-        # frame name
+        # frame label name
         self.frameName.setGeometry(QRect(262, 30, 120, 30))
         self.frameName.setStyleSheet("text-align: center;"
                                      "border-style: none;"
@@ -78,7 +80,7 @@ class TestCasesFrame(QFrame):
         self.frameName.setFont(font)
         self.frameName.setText("Test control")
 
-        # testcases name
+        # testcases label name
         self.testcasesName.setGeometry(QRect(80, 120, 100, 30))
         self.testcasesName.setStyleSheet("text-align: center;"
                                          "border-style: none;"
@@ -86,7 +88,7 @@ class TestCasesFrame(QFrame):
         self.testcasesName.setFont(font)
         self.testcasesName.setText("Test cases")
 
-        # temperature name
+        # temperature label name
         self.temperatureName.setGeometry(QRect(110, 160, 180, 30))
         self.temperatureName.setStyleSheet("text-align: center;"
                                            "border-style: none;"
@@ -94,7 +96,7 @@ class TestCasesFrame(QFrame):
         self.temperatureName.setFont(font)
         self.temperatureName.setText("Temperature test case")
 
-        # voltage name
+        # voltage label name
         self.voltageName.setGeometry(QRect(110, 200, 180, 30))
         self.voltageName.setStyleSheet("text-align: center;"
                                        "border-style: none;"
@@ -102,7 +104,7 @@ class TestCasesFrame(QFrame):
         self.voltageName.setFont(font)
         self.voltageName.setText("Voltage test case")
 
-        # speed name
+        # speed label name
         self.speedName.setGeometry(QRect(110, 240, 180, 30))
         self.speedName.setStyleSheet("text-align: center;"
                                      "border-style: none;"
@@ -110,7 +112,7 @@ class TestCasesFrame(QFrame):
         self.speedName.setFont(font)
         self.speedName.setText("Speed test case")
 
-        # max temperature name
+        # max temperature label name
         self.maxTemperatureName.setGeometry(QRect(80, 280, 80, 30))
         self.maxTemperatureName.setStyleSheet("text-align: center;"
                                               "border-style: none;"
@@ -118,7 +120,7 @@ class TestCasesFrame(QFrame):
         self.maxTemperatureName.setFont(font)
         self.maxTemperatureName.setText("Max temp")
 
-        # min temperature name
+        # min temperature label name
         self.minTemperatureName.setGeometry(QRect(180, 280, 80, 30))
         self.minTemperatureName.setStyleSheet("text-align: center;"
                                               "border-style: none;"
@@ -126,7 +128,7 @@ class TestCasesFrame(QFrame):
         self.minTemperatureName.setFont(font)
         self.minTemperatureName.setText("Min temp")
 
-        # max voltage name
+        # max voltage label name
         self.maxVoltageName.setGeometry(QRect(280, 280, 100, 30))
         self.maxVoltageName.setStyleSheet("text-align: center;"
                                           "border-style: none;"
@@ -134,7 +136,7 @@ class TestCasesFrame(QFrame):
         self.maxVoltageName.setFont(font)
         self.maxVoltageName.setText("Max voltage")
 
-        # min voltage name
+        # min voltage label name
         self.minVoltageName.setGeometry(QRect(400, 280, 100, 30))
         self.minVoltageName.setStyleSheet("text-align: center;"
                                           "border-style: none;"
