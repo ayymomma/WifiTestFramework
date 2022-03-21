@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QRect
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QDialog, QLineEdit, QLabel, QFrame
+from PyQt5.QtWidgets import QDialog, QLabel, QFrame
 
 from customWidgets.components.customLineEdit import CustomLineEdit
 
@@ -52,7 +52,7 @@ class TemperatureWindow(QDialog):
         self.windowName.setFont(font)
         self.windowName.setText("Temperature and Humidity")
 
-        font.setPointSize(8)
+        font.setPointSize(10)
         self.horizontalLine.setGeometry(QRect(0, 30, 291, 16))
         self.horizontalLine.setFrameShape(QFrame.HLine)
         self.horizontalLine.setFrameShadow(QFrame.Sunken)
@@ -63,42 +63,42 @@ class TemperatureWindow(QDialog):
         self.verticalLine.setFrameShadow(QFrame.Sunken)
         self.verticalLine.setObjectName("verticalLine")
 
-        self.bridgeTemperature.setGeometry(QRect(20, 50, 110, 20))
+        self.bridgeTemperature.setGeometry(QRect(10, 50, 120, 20))
         self.bridgeTemperature.setObjectName("bridgeTemperature")
         self.bridgeTemperature.setFont(font)
         self.bridgeTemperature.setText("HBridge Temperature")
 
-        self.motorTemperature.setGeometry(QRect(160, 50, 110, 20))
+        self.motorTemperature.setGeometry(QRect(155, 50, 110, 20))
         self.motorTemperature.setObjectName("motorTemperature")
         self.motorTemperature.setFont(font)
         self.motorTemperature.setText("Motor Temperature")
 
-        self.lineEditBridgeTemp.setGeometry(QRect(40, 80, 60, 20))
+        self.lineEditBridgeTemp.setGeometry(QRect(30, 80, 80, 30))
         self.lineEditBridgeTemp.setObjectName("lineEditBridgeTemp")
         self.lineEditBridgeTemp.setReadOnly(True)
         self.lineEditBridgeTemp.setLineEditStyle()
 
-        self.lineEditMotorTemp.setGeometry(QRect(180, 80, 60, 20))
+        self.lineEditMotorTemp.setGeometry(QRect(170, 80, 80, 30))
         self.lineEditMotorTemp.setObjectName("lineEditMotorTemp")
         self.lineEditMotorTemp.setReadOnly(True)
         self.lineEditMotorTemp.setLineEditStyle()
 
-        self.bridgeHumidity.setGeometry(QRect(30, 120, 110, 20))
+        self.bridgeHumidity.setGeometry(QRect(20, 120, 110, 30))
         self.bridgeHumidity.setObjectName("bridgeHumidity")
         self.bridgeHumidity.setFont(font)
         self.bridgeHumidity.setText("HBridge Humidity")
 
-        self.motorHumidity.setGeometry(QRect(170, 120, 110, 20))
+        self.motorHumidity.setGeometry(QRect(165, 120, 110, 20))
         self.motorHumidity.setObjectName("motorHumidity")
         self.motorHumidity.setFont(font)
         self.motorHumidity.setText("Motor Humidity")
 
-        self.lineEditBridgeHum.setGeometry(QRect(40, 150, 60, 20))
+        self.lineEditBridgeHum.setGeometry(QRect(30, 150, 80, 30))
         self.lineEditBridgeHum.setObjectName("lineEditBridgeHum")
         self.lineEditBridgeHum.setReadOnly(True)
         self.lineEditBridgeHum.setLineEditStyle()
 
-        self.lineEditMotorHum.setGeometry(QRect(180, 150, 60, 20))
+        self.lineEditMotorHum.setGeometry(QRect(170, 150, 80, 30))
         self.lineEditMotorHum.setObjectName("lineEditMotorHum")
         self.lineEditMotorHum.setReadOnly(True)
         self.lineEditMotorHum.setLineEditStyle()

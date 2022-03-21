@@ -6,13 +6,15 @@ from customWidgets.components.customButton import CustomButton
 from customWidgets.components.customCheckBox import CustomCheckBox
 from customWidgets.components.customLineEdit import CustomLineEdit
 from customWidgets.components.customProgressBar import CustomProgressBar
+from customWidgets.windows.speedWindow import SpeedWindow
 from customWidgets.windows.temperatureWindow import TemperatureWindow
+from customWidgets.windows.voltageWindow import VoltageWindow
 
 
 class TestCasesFrame(QFrame):
 
-    def __init__(self, container):
-        super(TestCasesFrame, self).__init__(container)
+    def __init__(self, parent):
+        super(TestCasesFrame, self).__init__(parent)
 
         # labels
         self.frameName = QLabel(self)
@@ -47,9 +49,12 @@ class TestCasesFrame(QFrame):
         self.speedWindowOn = False
 
         # windows
-        self.temperatureWindow = TemperatureWindow(container)
-        self.voltageWindow = TemperatureWindow(container)
-        self.speedWindow = TemperatureWindow(container)
+        self.temperatureWindow = TemperatureWindow(parent)
+        self.voltageWindow = VoltageWindow(parent)
+        self.speedWindow = SpeedWindow(parent)
+
+        # test parameters
+        self.testingTime = 30  # 30 seconds
 
         self.setupUi()
 
