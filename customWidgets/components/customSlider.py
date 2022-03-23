@@ -27,6 +27,7 @@ QSlider::handle:horizontal:pressed {{ background-color: {handleColorPressed}; }}
 class CustomSlider(QSlider):
     def __init__(self, container):
         super(CustomSlider, self).__init__(container)
+        self.setMaximum(100)
 
     def setSliderStyle(self, margin=0,
                        bgSize=20,
@@ -54,3 +55,6 @@ class CustomSlider(QSlider):
             handleColorPressed=handleColorPressed
         )
         self.setStyleSheet(adjustedStyle)
+
+    def getValue(self):
+        return int((self.value() * 13000) / 100)

@@ -55,6 +55,7 @@ class TestCasesFrame(QFrame):
 
         # test parameters
         self.testingTime = 30  # 30 seconds
+        self.motorSpeed = 0
 
         self.setupUi()
 
@@ -247,3 +248,7 @@ class TestCasesFrame(QFrame):
             self.voltageWindow.show()
         if self.speedWindowOn:
             self.speedWindow.show()
+
+    def onSliderChangedHandler(self, value):
+        self.motorSpeed = value
+        print(self.motorSpeed)

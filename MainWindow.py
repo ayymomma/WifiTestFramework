@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(1280, 768)
         self.setMaximumSize(1280, 768)
 
-        self.testCasesFrame.setObjectName("testCasesFrame")
+        self.motorControlFrame.speed_data_signal.connect(self.testCasesFrame.onSliderChangedHandler)
 
 
 if __name__ == '__main__':

@@ -1,3 +1,4 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLineEdit
 
 style = """
@@ -22,6 +23,7 @@ QLineEdit:focus {{
 class CustomLineEdit(QLineEdit):
     def __init__(self, container):
         super(CustomLineEdit, self).__init__(container)
+        self.setAlignment(Qt.AlignCenter)
 
     def setLineEditStyle(self,
                          borderSize=2,

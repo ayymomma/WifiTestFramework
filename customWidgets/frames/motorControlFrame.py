@@ -1,6 +1,6 @@
 import os
 
-from PyQt5.QtCore import QRect, QSize, Qt
+from PyQt5.QtCore import QRect, QSize, Qt, pyqtSignal
 from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtWidgets import QFrame, QLabel
 
@@ -10,6 +10,8 @@ from customWidgets.components.customSlider import CustomSlider
 
 
 class MotorControlFrame(QFrame):
+    speed_data_signal = pyqtSignal(int)
+    direction_data_signal = pyqtSignal(str)
 
     def __init__(self, container):
         super(MotorControlFrame, self).__init__(container)
@@ -75,6 +77,7 @@ class MotorControlFrame(QFrame):
         self.speedSlider.setSliderStyle()
         self.speedSlider.setMinimumWidth(400)
         self.speedSlider.setOrientation(Qt.Horizontal)
+        self.speedSlider.sliderReleased.connect(lambda: self.sendSpeedData())
 
         # button clockwise
         font.setPointSize(12)
@@ -95,9 +98,14 @@ class MotorControlFrame(QFrame):
         self.speedLineEdit.setGeometry(50, 220, 100, 35)
         self.speedLineEdit.setLineEditStyle()
         self.speedLineEdit.setFont(font)
+        self.speedLineEdit.setText("0")
+        self.speedLineEdit.setReadOnly(True)
         font.setPointSize(14)
-
 
     def setLogoImage(self, photoName):
         pixmap = QPixmap("resources" + os.path.sep + "images" + os.path.sep + photoName)
         self.logoImage.setPixmap(pixmap)
+
+    def sendSpeedData(self):
+        self.speed_data_signal.emit(self.speedSlider.getValue())
+        self.speedLineEdit.setText(str(self.speedSlider.getValue()))
