@@ -84,6 +84,7 @@ class MotorControlFrame(QFrame):
         self.clockwiseButton.setGeometry(QRect(50, 340, 150, 35))
         self.clockwiseButton.setButtonStyle()
         self.clockwiseButton.setFont(font)
+        self.clockwiseButton.pressed.connect(lambda value="clockwise": self.sendDirectionData(value))
         font.setPointSize(14)
 
         # button counterclockwise
@@ -91,6 +92,7 @@ class MotorControlFrame(QFrame):
         self.counterClockwiseButton.setGeometry(QRect(50, 390, 150, 35))
         self.counterClockwiseButton.setButtonStyle()
         self.counterClockwiseButton.setFont(font)
+        self.counterClockwiseButton.pressed.connect(lambda value="counterclockwise": self.sendDirectionData(value))
         font.setPointSize(14)
 
         # horizontalLine edit motor speed
@@ -109,3 +111,6 @@ class MotorControlFrame(QFrame):
     def sendSpeedData(self):
         self.speed_data_signal.emit(self.speedSlider.getValue())
         self.speedLineEdit.setText(str(self.speedSlider.getValue()))
+
+    def sendDirectionData(self, value):
+        self.direction_data_signal.emit(value)

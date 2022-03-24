@@ -9,6 +9,7 @@ from customWidgets.components.customProgressBar import CustomProgressBar
 from customWidgets.windows.speedWindow import SpeedWindow
 from customWidgets.windows.temperatureWindow import TemperatureWindow
 from customWidgets.windows.voltageWindow import VoltageWindow
+from testExecution.testExecution import TestExecution
 
 
 class TestCasesFrame(QFrame):
@@ -53,9 +54,9 @@ class TestCasesFrame(QFrame):
         self.voltageWindow = VoltageWindow(parent)
         self.speedWindow = SpeedWindow(parent)
 
-        # test parameters
-        self.testingTime = 30  # 30 seconds
-        self.motorSpeed = 0
+        # test execution class
+        self.testExecution = TestExecution()
+
 
         self.setupUi()
 
@@ -250,5 +251,9 @@ class TestCasesFrame(QFrame):
             self.speedWindow.show()
 
     def onSliderChangedHandler(self, value):
-        self.motorSpeed = value
-        print(self.motorSpeed)
+        self.testExecution.setMotorSpeed(value)
+        print(self.testExecution.motorSpeed)
+
+    def onChangeDirectionHandler(self, value):
+        self.testExecution.setMotorDirection(value)
+        print(self.testExecution.motorDirection)
