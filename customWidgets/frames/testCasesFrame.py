@@ -1,3 +1,5 @@
+import threading
+
 from PyQt5.QtCore import QRect, QSize
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFrame, QLabel
@@ -14,9 +16,9 @@ from testExecution.testExecution import TestExecution
 
 class TestCasesFrame(QFrame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, server):
         super(TestCasesFrame, self).__init__(parent)
-
+        self.server = server
         # labels
         self.frameName = QLabel(self)
         self.temperatureName = QLabel(self)
@@ -224,6 +226,7 @@ class TestCasesFrame(QFrame):
 
         # buttons callbacks
         self.startButton.clicked.connect(lambda: self.startTestButton())
+        self.stopButton.clicked.connect(lambda: self.stopTestButton())
 
     def updateWindowFlag(self, state, flagName):
         if flagName == "temperature":
@@ -249,6 +252,19 @@ class TestCasesFrame(QFrame):
             self.voltageWindow.show()
         if self.speedWindowOn:
             self.speedWindow.show()
+        self.startButton.setEnabled(False)
+        self.stopButton.setEnabled(True)
+        threading.Thread(target=self.testExecution.startTest, args=(self.server, )).start()
+
+    def stopTestButton(self):
+        if self.temperatureWindowOn:
+            self.temperatureWindow.hide()
+        if self.voltageWindowOn:
+            self.voltageWindow.hide()
+        if self.speedWindowOn:
+            self.speedWindow.hide()
+        self.startButton.setEnabled(True)
+        self.stopButton.setEnabled(False)
 
     def onSliderChangedHandler(self, value):
         self.testExecution.setMotorSpeed(value)

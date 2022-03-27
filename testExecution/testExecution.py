@@ -1,3 +1,4 @@
+import time
 
 
 class TestExecution:
@@ -13,3 +14,17 @@ class TestExecution:
 
     def setMotorDirection(self, value):
         self.motorDirection = value
+
+    def startTest(self, server):
+        server.sendMessage("S 1 6 100")
+        counter = 0
+        while counter < self.testingTime:
+            # send to uC parameters
+            # receive from uC values
+            # send signals to windows
+            print(server.receiveMessage())
+            counter += 1
+            time.sleep(1)
+
+    def stopTest(self):
+        pass
