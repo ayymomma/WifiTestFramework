@@ -1,13 +1,18 @@
 import time
 
+import signal
 
-class TestExecution:
+from PyQt5.QtCore import QObject, pyqtSignal
+
+
+class TestExecution(QObject):
+    counter_signal = pyqtSignal(int)
     testingTime = 30
     motorSpeed = 0
     motorDirection = ""
 
     def __init__(self):
-        pass
+        super().__init__()
 
     def setMotorSpeed(self, value):
         self.motorSpeed = value
@@ -17,8 +22,9 @@ class TestExecution:
 
     def startTest(self, server):
         server.sendMessage("S 1 6 100")
-        counter = 0
-        while counter < self.testingTime:
+        counter = 1
+        while counter <= self.testingTime:
+            self.counter_signal.emit(int(counter * 100 / self.testingTime))
             # send to uC parameters
             # receive from uC values
             # send signals to windows

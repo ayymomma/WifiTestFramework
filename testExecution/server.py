@@ -27,6 +27,6 @@ class Server:
     def sendMessage(self, response):
         try:
             self.client.sendall(bytes(response.encode()))
-            print("Am trimis '" + response + "' catre client!")
+            print("Am trimis " + response + " catre client!")
         except BrokenPipeError:
             print("Client has been disconnected!")

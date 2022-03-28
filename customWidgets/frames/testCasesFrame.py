@@ -1,5 +1,6 @@
 import threading
 
+from PyQt5 import QtCore
 from PyQt5.QtCore import QRect, QSize
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFrame, QLabel
@@ -228,6 +229,9 @@ class TestCasesFrame(QFrame):
         self.startButton.clicked.connect(lambda: self.startTestButton())
         self.stopButton.clicked.connect(lambda: self.stopTestButton())
 
+        # test step counter
+        self.testExecution.counter_signal.connect(lambda value: self.onCounterChange(value))
+
     def updateWindowFlag(self, state, flagName):
         if flagName == "temperature":
             if state == 2:
@@ -273,3 +277,7 @@ class TestCasesFrame(QFrame):
     def onChangeDirectionHandler(self, value):
         self.testExecution.setMotorDirection(value)
         print(self.testExecution.motorDirection)
+
+    @QtCore.pyqtSlot()
+    def onCounterChange(self, value):
+        self.progressBar.setValue(value)
