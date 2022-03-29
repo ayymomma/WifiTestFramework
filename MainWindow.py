@@ -1,6 +1,7 @@
 import os
 import sys
 
+import psutil
 from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
@@ -20,7 +21,6 @@ class MainWindow(QMainWindow):
         self.motorControlFrame = MotorControlFrame(self.centralWidget)
         self.consoleLogFrame = ConsoleLogFrame(self.centralWidget)
 
-
         self.setCentralWidget(self.centralWidget)
         self.setWindowIcon(QtGui.QIcon("resources" + os.path.sep + "Images" + os.path.sep + "icon.png"))
         self.setupUi()
@@ -35,8 +35,23 @@ class MainWindow(QMainWindow):
         self.motorControlFrame.direction_data_signal.connect(self.testCasesFrame.onChangeDirectionHandler)
 
 
+def kill_proc_tree(pid, including_parent=True):
+    parent = psutil.Process(pid)
+    if including_parent:
+        parent.kill()
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     wifiTest = MainWindow()
     wifiTest.show()
-    sys.exit(app.exec())
+    returnValue = app.exec()
+    if returnValue is not None:
+        kill_proc_tree(os.getpid())
+        sys.exit(returnValue)
+
+
+
+
+
+        kill_proc_tree(os.getpid())

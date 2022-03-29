@@ -1,7 +1,5 @@
 import time
 
-import signal
-
 from PyQt5.QtCore import QObject, pyqtSignal
 
 

@@ -1,5 +1,8 @@
-import socket
+import os
 import threading
+import socket
+
+import psutil
 
 
 class Server:
@@ -30,3 +33,4 @@ class Server:
             print("Am trimis " + response + " catre client!")
         except BrokenPipeError:
             print("Client has been disconnected!")
+
