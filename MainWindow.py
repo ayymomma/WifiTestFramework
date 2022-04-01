@@ -49,9 +49,3 @@ if __name__ == '__main__':
     if returnValue is not None:
         kill_proc_tree(os.getpid())
         sys.exit(returnValue)
-
-
-
-
-
-        kill_proc_tree(os.getpid())

@@ -258,6 +258,7 @@ class TestCasesFrame(QFrame):
             self.speedWindow.show()
         self.startButton.setEnabled(False)
         self.stopButton.setEnabled(True)
+        self.determineTestcase()
         threading.Thread(target=self.testExecution.startTest, args=(self.server, )).start()
 
     def stopTestButton(self):
@@ -269,14 +270,35 @@ class TestCasesFrame(QFrame):
             self.speedWindow.hide()
         self.startButton.setEnabled(True)
         self.stopButton.setEnabled(False)
+        self.testExecution.stopTest(self.server)
 
     def onSliderChangedHandler(self, value):
+        value = int((value / 13000) * 100)
         self.testExecution.setMotorSpeed(value)
         print(self.testExecution.motorSpeed)
 
     def onChangeDirectionHandler(self, value):
         self.testExecution.setMotorDirection(value)
         print(self.testExecution.motorDirection)
+
+    def determineTestcase(self):
+        if self.temperatureWindowOn:
+            if self.voltageWindowOn:
+                if self.speedWindowOn:
+                    self.testExecution.testCase = 6
+                    return
+                self.testExecution.testCase = 4
+                return
+            self.testExecution.testCase = 1
+            return
+        if self.voltageWindowOn:
+            if self.speedWindowOn:
+                self.testExecution.testCase = 5
+                return
+            self.testExecution.testCase = 2
+            return
+        if self.speedWindowOn:
+            self.testExecution.testCase = 3
 
     @QtCore.pyqtSlot()
     def onCounterChange(self, value):
