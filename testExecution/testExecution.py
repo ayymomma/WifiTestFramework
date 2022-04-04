@@ -5,6 +5,9 @@ from PyQt5.QtCore import QObject, pyqtSignal
 
 class TestExecution(QObject):
     counter_signal = pyqtSignal(int)
+    temperature_signal = pyqtSignal(list)
+    voltage_signal = pyqtSignal(float)
+    speed_signal = pyqtSignal(float)
     testingTime = 30
     motorSpeed = 100
     motorDirection = 1
@@ -30,14 +33,38 @@ class TestExecution(QObject):
 
         while self.counter <= self.testingTime:
             self.counter_signal.emit(int(self.counter * 100 / self.testingTime))
-            # send to uC parameters
+            # send parameters to uC
             # receive from uC values
             # send signals to windows
             self.processServerValues(server.receiveMessage())
             self.counter += 1
             time.sleep(1)
+        self.stopTest(server)
 
     def processServerValues(self, message):
+        # if self.testCase == 1:
+        #     temperatureHumidity = message.split(" ")
+        #     self.temperature_signal.emit(temperatureHumidity)
+        # elif self.testCase == 2:
+        #     voltage = message.split(" ")
+        #     self.voltage_signal.emit(float(voltage[0]))
+        # elif self.testCase == 3:
+        #     speed = message.split(" ")
+        #     self.speed_signal.emit(float(speed[0]))
+        # elif self.testCase == 4:
+        #     temperatureHumidity = message.split(" ")[0:4]
+        #     self.temperature_signal.emit(temperatureHumidity)
+        #     voltage = message.split(" ")[4]
+        #     self.voltage_signal.emit(float(voltage[0]))
+        if self.testCase == 6:
+            temperatureHumidity = message.split(" ")[0:4]
+            self.temperature_signal.emit(temperatureHumidity)
+            voltage = message.split(" ")[4]
+            self.voltage_signal.emit(float(voltage))
+            speed = message.split(" ")[5]
+            self.speed_signal.emit(float(speed))
+
+
         print(message)
 
     def stopTest(self, server):

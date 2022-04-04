@@ -159,7 +159,7 @@ class TestCasesFrame(QFrame):
         self.maxTemperatureLineEdit.setGeometry(80, 320, 80, 35)
         self.maxTemperatureLineEdit.setLineEditStyle()
         self.maxTemperatureLineEdit.setFont(font)
-        self.maxTemperatureLineEdit.setText("28.0")
+        self.maxTemperatureLineEdit.setText("28.0 °C")
         font.setPointSize(14)
 
         # horizontalLine edit min temperature
@@ -167,7 +167,7 @@ class TestCasesFrame(QFrame):
         self.minTemperatureLineEdit.setGeometry(180, 320, 80, 35)
         self.minTemperatureLineEdit.setLineEditStyle()
         self.minTemperatureLineEdit.setFont(font)
-        self.minTemperatureLineEdit.setText("5.0")
+        self.minTemperatureLineEdit.setText("5.0 °C")
         font.setPointSize(14)
 
         # horizontalLine edit max voltage
@@ -175,7 +175,7 @@ class TestCasesFrame(QFrame):
         self.maxVoltageLineEdit.setGeometry(280, 320, 80, 35)
         self.maxVoltageLineEdit.setLineEditStyle()
         self.maxVoltageLineEdit.setFont(font)
-        self.maxVoltageLineEdit.setText("18.0")
+        self.maxVoltageLineEdit.setText("18.0 V")
         font.setPointSize(14)
 
         # horizontalLine edit min voltage
@@ -183,7 +183,7 @@ class TestCasesFrame(QFrame):
         self.minVoltageLineEdit.setGeometry(400, 320, 80, 35)
         self.minVoltageLineEdit.setLineEditStyle()
         self.minVoltageLineEdit.setFont(font)
-        self.minVoltageLineEdit.setText("8.0")
+        self.minVoltageLineEdit.setText("8.0 V")
         font.setPointSize(14)
 
         # progress bar
@@ -231,6 +231,9 @@ class TestCasesFrame(QFrame):
 
         # test step counter
         self.testExecution.counter_signal.connect(lambda value: self.onCounterChange(value))
+        self.testExecution.temperature_signal.connect(lambda value: self.temperatureWindow.setValue(value))
+        self.testExecution.voltage_signal.connect(lambda value: self.voltageWindow.setValue(value))
+        self.testExecution.speed_signal.connect(lambda value: self.speedWindow.setValue(value))
 
     def updateWindowFlag(self, state, flagName):
         if flagName == "temperature":
@@ -282,23 +285,24 @@ class TestCasesFrame(QFrame):
         print(self.testExecution.motorDirection)
 
     def determineTestcase(self):
-        if self.temperatureWindowOn:
-            if self.voltageWindowOn:
-                if self.speedWindowOn:
-                    self.testExecution.testCase = 6
-                    return
-                self.testExecution.testCase = 4
-                return
-            self.testExecution.testCase = 1
-            return
-        if self.voltageWindowOn:
-            if self.speedWindowOn:
-                self.testExecution.testCase = 5
-                return
-            self.testExecution.testCase = 2
-            return
-        if self.speedWindowOn:
-            self.testExecution.testCase = 3
+        self.testExecution.testCase = 6
+        # if self.temperatureWindowOn:
+        #     if self.voltageWindowOn:
+        #         if self.speedWindowOn:
+        #             self.testExecution.testCase = 6
+        #             return
+        #         self.testExecution.testCase = 4
+        #         return
+        #     self.testExecution.testCase = 1
+        #     return
+        # if self.voltageWindowOn:
+        #     if self.speedWindowOn:
+        #         self.testExecution.testCase = 5
+        #         return
+        #     self.testExecution.testCase = 2
+        #     return
+        # if self.speedWindowOn:
+        #     self.testExecution.testCase = 3
 
     @QtCore.pyqtSlot()
     def onCounterChange(self, value):

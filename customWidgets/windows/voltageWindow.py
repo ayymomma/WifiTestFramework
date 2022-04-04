@@ -60,3 +60,8 @@ class VoltageWindow(QDialog):
         self.supplyVoltage.setObjectName("motorSpeed")
         self.supplyVoltage.setFont(font)
         self.supplyVoltage.setText("Supply Voltage")
+
+        self.setValue(0)
+
+    def setValue(self, value):
+        self.lineEditVoltage.setText(str(value) + "V")

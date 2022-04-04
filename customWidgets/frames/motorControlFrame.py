@@ -110,7 +110,7 @@ class MotorControlFrame(QFrame):
 
     def sendSpeedData(self):
         self.speed_data_signal.emit(self.speedSlider.getValue())
-        self.speedLineEdit.setText(str(self.speedSlider.getValue()))
+        self.speedLineEdit.setText(str(self.speedSlider.getValue()) + " RPM")
 
     def sendDirectionData(self, value):
         self.direction_data_signal.emit(value)

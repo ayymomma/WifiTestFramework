@@ -102,3 +102,15 @@ class TemperatureWindow(QDialog):
         self.lineEditMotorHum.setObjectName("lineEditMotorHum")
         self.lineEditMotorHum.setReadOnly(True)
         self.lineEditMotorHum.setLineEditStyle()
+
+        self.setValue(["0=0", "0=0", "0=0", "0=0"])
+
+    def setValue(self, value):
+        bridgeTemp = value[0].split("=")[1] + "°C"
+        bridgeHum = value[1].split("=")[1] + "%"
+        motorTemp = value[2].split("=")[1] + "°C"
+        motorHum = value[3].split("=")[1] + "%"
+        self.lineEditBridgeTemp.setText(str(bridgeTemp))
+        self.lineEditMotorTemp.setText(str(motorTemp))
+        self.lineEditBridgeHum.setText(str(bridgeHum))
+        self.lineEditMotorHum.setText(str(motorHum))

@@ -23,7 +23,6 @@ class SpeedWindow(QDialog):
         self.horizontalLine = QFrame(self)
         self.motorSpeed = QLabel(self)
         self.lineEditSpeed = CustomLineEdit(self)
-
         self.setupUi()
 
     def setupUi(self):
@@ -51,7 +50,7 @@ class SpeedWindow(QDialog):
         self.horizontalLine.setFrameShadow(QFrame.Sunken)
         self.horizontalLine.setObjectName("horizontalLine")
 
-        self.lineEditSpeed.setGeometry(QRect(98, 100, 80, 30))
+        self.lineEditSpeed.setGeometry(QRect(93, 100, 100, 30))
         self.lineEditSpeed.setObjectName("lineEditSpeed")
         self.lineEditSpeed.setReadOnly(True)
         self.lineEditSpeed.setLineEditStyle()
@@ -60,3 +59,8 @@ class SpeedWindow(QDialog):
         self.motorSpeed.setObjectName("motorSpeed")
         self.motorSpeed.setFont(font)
         self.motorSpeed.setText("Motor Speed")
+
+        self.setValue(0)
+
+    def setValue(self, value):
+        self.lineEditSpeed.setText(str(value) + " RPM")
