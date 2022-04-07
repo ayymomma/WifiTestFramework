@@ -160,6 +160,7 @@ class TestCasesFrame(QFrame):
         self.maxTemperatureLineEdit.setLineEditStyle()
         self.maxTemperatureLineEdit.setFont(font)
         self.maxTemperatureLineEdit.setText("28.0 °C")
+        self.maxTemperatureLineEdit.textChanged.connect(lambda value: self.testExecution.setMaxTemperature(value))
         font.setPointSize(14)
 
         # horizontalLine edit min temperature
@@ -168,6 +169,7 @@ class TestCasesFrame(QFrame):
         self.minTemperatureLineEdit.setLineEditStyle()
         self.minTemperatureLineEdit.setFont(font)
         self.minTemperatureLineEdit.setText("5.0 °C")
+        self.minTemperatureLineEdit.textChanged.connect(lambda value: self.testExecution.setMinTemperature(value))
         font.setPointSize(14)
 
         # horizontalLine edit max voltage
@@ -176,6 +178,7 @@ class TestCasesFrame(QFrame):
         self.maxVoltageLineEdit.setLineEditStyle()
         self.maxVoltageLineEdit.setFont(font)
         self.maxVoltageLineEdit.setText("18.0 V")
+        self.maxVoltageLineEdit.textChanged.connect(lambda value: self.testExecution.setMaxVoltage(value))
         font.setPointSize(14)
 
         # horizontalLine edit min voltage
@@ -184,6 +187,7 @@ class TestCasesFrame(QFrame):
         self.minVoltageLineEdit.setLineEditStyle()
         self.minVoltageLineEdit.setFont(font)
         self.minVoltageLineEdit.setText("8.0 V")
+        self.minVoltageLineEdit.textChanged.connect(lambda value: self.testExecution.setMinVoltage(value))
         font.setPointSize(14)
 
         # progress bar

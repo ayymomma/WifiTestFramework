@@ -13,6 +13,10 @@ class TestExecution(QObject):
     motorDirection = 1
     counter = 1
     testCase = 1
+    minTemperature = 5
+    maxTemperature = 28
+    minVoltage = 8
+    maxVoltage = 18
 
     def __init__(self):
         super().__init__()
@@ -22,7 +26,35 @@ class TestExecution(QObject):
 
     def setMotorDirection(self, value):
         self.motorDirection = value
+        print(value)
 
+    def setMinTemperature(self, value):
+        try:
+            self.minTemperature = int(value)
+        except ValueError:
+            self.minTemperature = 5
+        print(self.minTemperature)
+
+    def setMaxTemperature(self, value):
+        try:
+            self.maxTemperature = int(value)
+        except ValueError:
+            self.maxTemperature = 28
+        print(self.maxTemperature)
+
+    def setMinVoltage(self, value):
+        try:
+            self.minVoltage = int(value)
+        except ValueError:
+            self.minVoltage = 8
+        print(self.minVoltage)
+
+    def setMaxVoltage(self, value):
+        try:
+            self.maxVoltage = int(value)
+        except ValueError:
+            self.maxVoltage = 18
+        print(self.maxVoltage)
 
     def startTest(self, server):
         server.sendMessage("S {motorDirection} {testCase} {motorSpeed}".format(motorDirection=self.motorDirection,
