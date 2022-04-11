@@ -238,6 +238,7 @@ class TestCasesFrame(QFrame):
         self.testExecution.temperature_signal.connect(lambda value: self.temperatureWindow.setValue(value))
         self.testExecution.voltage_signal.connect(lambda value: self.voltageWindow.setValue(value))
         self.testExecution.speed_signal.connect(lambda value: self.speedWindow.setValue(value))
+        self.testExecution.stop_test_signal.connect(lambda: self.stopTestButton(signal=True))
 
     def updateWindowFlag(self, state, flagName):
         if flagName == "temperature":
@@ -259,8 +260,10 @@ class TestCasesFrame(QFrame):
     def startTestButton(self):
         if self.temperatureWindowOn:
             self.temperatureWindow.show()
+            self.testExecution.temperatureTest = True
         if self.voltageWindowOn:
             self.voltageWindow.show()
+            self.testExecution.voltageTest = True
         if self.speedWindowOn:
             self.speedWindow.show()
         self.startButton.setEnabled(False)
@@ -268,16 +271,19 @@ class TestCasesFrame(QFrame):
         self.determineTestcase()
         threading.Thread(target=self.testExecution.startTest, args=(self.server, )).start()
 
-    def stopTestButton(self):
+    def stopTestButton(self, signal=False):
         if self.temperatureWindowOn:
             self.temperatureWindow.hide()
+            self.testExecution.temperatureTest = False
         if self.voltageWindowOn:
             self.voltageWindow.hide()
+            self.testExecution.voltageTest = False
         if self.speedWindowOn:
             self.speedWindow.hide()
         self.startButton.setEnabled(True)
         self.stopButton.setEnabled(False)
-        self.testExecution.stopTest(self.server)
+        if not signal:
+            self.testExecution.stopTest(self.server, "Test finished")
 
     def onSliderChangedHandler(self, value):
         value = int((value / 13000) * 100)
@@ -311,3 +317,4 @@ class TestCasesFrame(QFrame):
     @QtCore.pyqtSlot()
     def onCounterChange(self, value):
         self.progressBar.setValue(value)
+

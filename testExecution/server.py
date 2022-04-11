@@ -23,8 +23,10 @@ class Server:
         print("Connected by ", self.clientAddress)
 
     def receiveMessage(self):
-        data = self.client.recv(1024)
-        data = data.decode()
+        # edit when pcb is ready
+        # data = self.client.recv(1024)
+        # data = data.decode()
+        data = "T=26.5 H=60 T=27.5 H=61 12 12100"
         return data
 
     def sendMessage(self, response):
