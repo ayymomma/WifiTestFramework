@@ -1,0 +1,3 @@
+21/04/2022 13:26:47: Log file created
+21/04/2022 13:26:56: Test started.
+21/04/2022 13:27:00: Test stopped by user

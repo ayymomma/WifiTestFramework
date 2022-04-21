@@ -284,7 +284,7 @@ class TestCasesFrame(QFrame):
         self.startButton.setEnabled(True)
         self.stopButton.setEnabled(False)
         if not signal:
-            self.testExecution.stopTest(self.server, "Test finished")
+            self.testExecution.stopTest(self.server, "Test stopped by user")
 
     def onSliderChangedHandler(self, value):
         value = int((value / 13000) * 100)

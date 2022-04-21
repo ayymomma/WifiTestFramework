@@ -38,6 +38,7 @@ class MainWindow(QMainWindow):
         self.motorControlFrame.direction_data_signal.connect(self.testCasesFrame.onChangeDirectionHandler)
         self.testCasesFrame.testExecution.graph_signal.connect(self.graphWindow.onGraphHandler)
         self.testCasesFrame.testExecution.start_test_signal.connect(self.graphWindow.show)
+        self.testCasesFrame.testExecution.print_message_signal.connect(self.consoleLogFrame.onPrintMessageHandler)
 
 
 def kill_proc_tree(pid, including_parent=True):

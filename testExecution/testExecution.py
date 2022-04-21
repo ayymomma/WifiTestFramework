@@ -12,6 +12,7 @@ class TestExecution(QObject):
     stop_test_signal = pyqtSignal()
     start_test_signal = pyqtSignal()
     graph_signal = pyqtSignal(list)
+    print_message_signal = pyqtSignal(str)
 
     testingTime = 30
     motorSpeed = 100
@@ -70,6 +71,7 @@ class TestExecution(QObject):
         print(self.maxVoltage)
 
     def startTest(self, server):
+        self.print_message_signal.emit('Test started.')
         self.start_test_signal.emit()
         server.sendMessage("S {motorDirection} {testCase} {motorSpeed}".format(motorDirection=self.motorDirection,
                                                                                testCase=self.testCase,
@@ -89,8 +91,8 @@ class TestExecution(QObject):
             self.counter += 1
             time.sleep(1)
 
-
-        self.stopTest(server, "Test finished")
+        if self.counter != self.testingTime + 5:
+            self.stopTest(server, "Test finished with no errors!")
 
     def checkVoltage(self, voltage):
         if self.voltageTest:
@@ -136,7 +138,7 @@ class TestExecution(QObject):
         print(message)
 
     def stopTest(self, server, status):
-        self.counter = self.testingTime + 1
+        self.counter = self.testingTime + 5
         server.sendMessage("X")
-        print(status)
+        self.print_message_signal.emit(status)
         self.stop_test_signal.emit()

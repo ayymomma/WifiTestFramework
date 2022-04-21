@@ -31,4 +31,3 @@ class CustomTextEdit(QTextEdit):
         )
         self.setStyleSheet(adjustedStyle)
         self.setReadOnly(True)
-        self.setText("Console")
