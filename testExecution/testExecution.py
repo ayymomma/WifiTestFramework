@@ -1,4 +1,5 @@
 import time
+import matplotlib.pyplot as plt
 
 from PyQt5.QtCore import QObject, pyqtSignal
 
@@ -9,6 +10,8 @@ class TestExecution(QObject):
     voltage_signal = pyqtSignal(float)
     speed_signal = pyqtSignal(float)
     stop_test_signal = pyqtSignal()
+    start_test_signal = pyqtSignal()
+    graph_signal = pyqtSignal(list)
 
     testingTime = 30
     motorSpeed = 100
@@ -24,6 +27,9 @@ class TestExecution(QObject):
     temperatureHumidity = []
     voltage = 0
     speed = 0
+    hBridgeTemperatureGraph = None
+    motorTemperatureGraph = None
+    voltageGraph = None
 
     def __init__(self):
         super().__init__()
@@ -64,10 +70,13 @@ class TestExecution(QObject):
         print(self.maxVoltage)
 
     def startTest(self, server):
+        self.start_test_signal.emit()
         server.sendMessage("S {motorDirection} {testCase} {motorSpeed}".format(motorDirection=self.motorDirection,
                                                                                testCase=self.testCase,
                                                                                motorSpeed=self.motorSpeed))
         server.receiveMessage()
+        self.voltageGraph = None
+        self.motorTemperatureGraph = None
         self.counter = 1
 
         while self.counter <= self.testingTime:
@@ -76,12 +85,16 @@ class TestExecution(QObject):
             # receive from uC values
             # send signals to windows
             self.processServerValues(server, server.receiveMessage())
+            self.graph_signal.emit([self.motorTemperatureGraph, self.voltageGraph])
             self.counter += 1
             time.sleep(1)
+
+
         self.stopTest(server, "Test finished")
 
     def checkVoltage(self, voltage):
         if self.voltageTest:
+            self.voltageGraph = voltage
             if voltage < self.minVoltage or voltage > self.maxVoltage:
                 return False, f'Voltage is out of range.'
             else:
@@ -91,6 +104,10 @@ class TestExecution(QObject):
 
     def checkTemperature(self, temperature, name):
         if self.temperatureTest:
+            # if name == 'H Bridge':
+            #     self.hBridgeTemperatureList.append(temperature)
+            if name == 'Motor':
+                self.motorTemperatureGraph = temperature
             if temperature < self.minTemperature or temperature > self.maxTemperature:
                 return False, f'{name} temperature is out of range.'
             else:

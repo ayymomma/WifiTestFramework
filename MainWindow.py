@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 from customWidgets.frames.consoleLogFrame import ConsoleLogFrame
 from customWidgets.frames.motorControlFrame import MotorControlFrame
 from customWidgets.frames.testCasesFrame import TestCasesFrame
+from customWidgets.windows.graphWindow import GraphWindow
 from testExecution.server import Server
 
 
@@ -20,6 +21,7 @@ class MainWindow(QMainWindow):
         self.testCasesFrame = TestCasesFrame(self.centralWidget, self.server)
         self.motorControlFrame = MotorControlFrame(self.centralWidget)
         self.consoleLogFrame = ConsoleLogFrame(self.centralWidget)
+        self.graphWindow = GraphWindow()
 
         self.setCentralWidget(self.centralWidget)
         self.setWindowIcon(QtGui.QIcon("resources" + os.path.sep + "Images" + os.path.sep + "icon.png"))
@@ -30,9 +32,12 @@ class MainWindow(QMainWindow):
         self.resize(1280, 768)
         self.setMinimumSize(1280, 768)
         self.setMaximumSize(1280, 768)
+        self.graphWindow.hide()
 
         self.motorControlFrame.speed_data_signal.connect(self.testCasesFrame.onSliderChangedHandler)
         self.motorControlFrame.direction_data_signal.connect(self.testCasesFrame.onChangeDirectionHandler)
+        self.testCasesFrame.testExecution.graph_signal.connect(self.graphWindow.onGraphHandler)
+        self.testCasesFrame.testExecution.start_test_signal.connect(self.graphWindow.show)
 
 
 def kill_proc_tree(pid, including_parent=True):
