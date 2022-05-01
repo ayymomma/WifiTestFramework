@@ -32,6 +32,10 @@ class TestExecution(QObject):
     motorTemperatureGraph = None
     voltageGraph = None
 
+    xFlagValues = []
+    yFlagTemperature = []
+    yFlagVoltage = []
+
     def __init__(self):
         super().__init__()
 
@@ -80,8 +84,13 @@ class TestExecution(QObject):
         self.voltageGraph = None
         self.motorTemperatureGraph = None
         self.counter = 1
+        self.xFlagValues = []
+        self.yFlagTemperature = []
+        self.yFlagVoltage = []
+
 
         while self.counter <= self.testingTime:
+            self.xFlagValues.append(self.counter)
             self.counter_signal.emit(int(self.counter * 100 / self.testingTime))
             # send parameters to uC
             # receive from uC values
@@ -127,18 +136,36 @@ class TestExecution(QObject):
             self.speed_signal.emit(float(self.speed))
 
             flag, status = self.checkTemperature(float(self.temperatureHumidity[0].split("=")[1]), 'Motor')
+            self.yFlagTemperature.append(int(not flag))
             if not flag:
                 self.stopTest(server, status)
             flag, status = self.checkTemperature(float(self.temperatureHumidity[2].split("=")[1]), 'H Bridge')
             if not flag:
                 self.stopTest(server, status)
             flag, status = self.checkVoltage(float(self.voltage))
+            self.yFlagVoltage.append(int(not flag))
             if not flag:
                 self.stopTest(server, status)
         print(message)
 
     def stopTest(self, server, status):
+        while len(self.xFlagValues) < 30:
+            self.xFlagValues.append(self.xFlagValues[-1] + 1)
+            self.yFlagVoltage.append(0)
+            self.yFlagTemperature.append(0)
+            # self.y_values_distance.append(0)
+
+        if len(self.xFlagValues) > 30:
+            self.xFlagValues = self.xFlagValues[0:29]
+            self.yFlagVoltage = self.yFlagVoltage[0:29]
+            # self.y_values_distance = self.y_values_distance[0:29]
+            self.yFlagTemperature = self.yFlagTemperature[0:29]
+
         self.counter = self.testingTime + 5
         server.sendMessage("X")
         self.print_message_signal.emit(status)
         self.stop_test_signal.emit()
+        print(self.xFlagValues)
+        print(self.yFlagTemperature)
+        print(self.yFlagVoltage)
+

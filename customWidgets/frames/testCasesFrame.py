@@ -10,6 +10,7 @@ from customWidgets.components.customCheckBox import CustomCheckBox
 from customWidgets.components.customLineEdit import CustomLineEdit
 from customWidgets.components.customProgressBar import CustomProgressBar
 from customWidgets.windows.graphWindow import GraphWindow
+from customWidgets.windows.motorStateWindow import FlagsWindow
 from customWidgets.windows.speedWindow import SpeedWindow
 from customWidgets.windows.temperatureWindow import TemperatureWindow
 from customWidgets.windows.voltageWindow import VoltageWindow
@@ -57,6 +58,7 @@ class TestCasesFrame(QFrame):
         self.temperatureWindow = TemperatureWindow(parent)
         self.voltageWindow = VoltageWindow(parent)
         self.speedWindow = SpeedWindow(parent)
+        self.flagsWindow = FlagsWindow(parent)
 
         # test execution class
         self.testExecution = TestExecution()
@@ -83,7 +85,7 @@ class TestCasesFrame(QFrame):
                            """
                            )
 
-        # frame label name
+        # frame temperatureLabel name
         self.frameName.setGeometry(QRect(262, 30, 120, 30))
         self.frameName.setStyleSheet("text-align: center;"
                                      "border-style: none;"
@@ -91,7 +93,7 @@ class TestCasesFrame(QFrame):
         self.frameName.setFont(font)
         self.frameName.setText("Test control")
 
-        # testcases label name
+        # testcases temperatureLabel name
         self.testcasesName.setGeometry(QRect(80, 120, 100, 30))
         self.testcasesName.setStyleSheet("text-align: center;"
                                          "border-style: none;"
@@ -99,7 +101,7 @@ class TestCasesFrame(QFrame):
         self.testcasesName.setFont(font)
         self.testcasesName.setText("Test cases")
 
-        # temperature label name
+        # temperature temperatureLabel name
         self.temperatureName.setGeometry(QRect(110, 160, 180, 30))
         self.temperatureName.setStyleSheet("text-align: center;"
                                            "border-style: none;"
@@ -107,7 +109,7 @@ class TestCasesFrame(QFrame):
         self.temperatureName.setFont(font)
         self.temperatureName.setText("Temperature test case")
 
-        # voltage label name
+        # voltage temperatureLabel name
         self.voltageName.setGeometry(QRect(110, 200, 180, 30))
         self.voltageName.setStyleSheet("text-align: center;"
                                        "border-style: none;"
@@ -115,7 +117,7 @@ class TestCasesFrame(QFrame):
         self.voltageName.setFont(font)
         self.voltageName.setText("Voltage test case")
 
-        # speed label name
+        # speed temperatureLabel name
         self.speedName.setGeometry(QRect(110, 240, 180, 30))
         self.speedName.setStyleSheet("text-align: center;"
                                      "border-style: none;"
@@ -123,7 +125,7 @@ class TestCasesFrame(QFrame):
         self.speedName.setFont(font)
         self.speedName.setText("Speed test case")
 
-        # max temperature label name
+        # max temperature temperatureLabel name
         self.maxTemperatureName.setGeometry(QRect(80, 280, 80, 30))
         self.maxTemperatureName.setStyleSheet("text-align: center;"
                                               "border-style: none;"
@@ -131,7 +133,7 @@ class TestCasesFrame(QFrame):
         self.maxTemperatureName.setFont(font)
         self.maxTemperatureName.setText("Max temp")
 
-        # min temperature label name
+        # min temperature temperatureLabel name
         self.minTemperatureName.setGeometry(QRect(180, 280, 80, 30))
         self.minTemperatureName.setStyleSheet("text-align: center;"
                                               "border-style: none;"
@@ -139,7 +141,7 @@ class TestCasesFrame(QFrame):
         self.minTemperatureName.setFont(font)
         self.minTemperatureName.setText("Min temp")
 
-        # max voltage label name
+        # max voltage temperatureLabel name
         self.maxVoltageName.setGeometry(QRect(280, 280, 100, 30))
         self.maxVoltageName.setStyleSheet("text-align: center;"
                                           "border-style: none;"
@@ -147,7 +149,7 @@ class TestCasesFrame(QFrame):
         self.maxVoltageName.setFont(font)
         self.maxVoltageName.setText("Max voltage")
 
-        # min voltage label name
+        # min voltage temperatureLabel name
         self.minVoltageName.setGeometry(QRect(400, 280, 100, 30))
         self.minVoltageName.setStyleSheet("text-align: center;"
                                           "border-style: none;"
@@ -283,6 +285,8 @@ class TestCasesFrame(QFrame):
             self.speedWindow.hide()
         self.startButton.setEnabled(True)
         self.stopButton.setEnabled(False)
+        self.flagsWindow.draw_flags(self.testExecution.xFlagValues, self.testExecution.yFlagTemperature, self.testExecution.yFlagVoltage)
+        self.flagsWindow.show()
         if not signal:
             self.testExecution.stopTest(self.server, "Test stopped by user")
 
