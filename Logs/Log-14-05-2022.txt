@@ -1,0 +1,19 @@
+14/05/2022 16:06:42: Log file created
+14/05/2022 16:11:26: Log file created
+14/05/2022 16:12:03: Test started.
+14/05/2022 16:12:03: Voltage is out of range.
+14/05/2022 16:12:17: Test finished with no errors!
+14/05/2022 16:13:35: Log file created
+14/05/2022 16:14:01: Test started.
+14/05/2022 16:14:02: Voltage is out of range.
+14/05/2022 16:14:17: Test finished with no errors!
+14/05/2022 16:14:30: Log file created
+14/05/2022 16:14:34: Test started.
+14/05/2022 16:14:40: Log file created
+14/05/2022 16:15:01: Test started.
+14/05/2022 16:17:37: Log file created
+14/05/2022 16:17:55: Test started.
+14/05/2022 16:18:26: Test finished with no errors!
+14/05/2022 16:23:51: Log file created
+14/05/2022 16:24:30: Test started.
+14/05/2022 16:25:00: Test finished with no errors!

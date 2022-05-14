@@ -1,0 +1,129 @@
+  #include <DHT.h>  // Including library for dht 
+#include <ESP8266WiFi.h>
+//
+const char *ssid =  "DIGI-T53k";    
+const char *pass =  "TF359U9k";
+//const char *ssid = "ureche";
+//const char *pass = "qwerty123";
+
+const uint16_t port = 50100;
+//const char *host = "192.168.188.45";
+const char *host = "192.168.100.44";
+
+char test_case = '0';
+float voltage_value = 0.0;
+String output = "";
+#define DHTPIN 2
+#define DHTPIN_MOTOR 14
+#define ANALOGPIN A0
+
+DHT dht(DHTPIN, DHT11);
+DHT dht_motor(DHTPIN_MOTOR, DHT11);
+ 
+WiFiClient client;
+ 
+void setup() 
+      {
+      Serial.begin(115200);
+      delay(10);
+      dht.begin();
+      dht_motor.begin();
+      Serial.println("Connecting to ");
+      Serial.println(ssid);
+      WiFi.begin(ssid, pass);  
+        while (WiFi.status() != WL_CONNECTED) 
+      {
+            delay(500);
+            Serial.print(".");
+      }
+      
+      Serial.println("");
+      Serial.println("WiFi connected");
+      if(!client.connect(host, port)){
+      Serial.println("Connection failed!");
+      delay(1000);
+      return;
+      }
+}
+ 
+void loop() 
+{
+   if( client.available()){
+     char input = client.read();
+     if( input == 'S' ){
+        char r;
+        char p;
+        char m;
+        char command[14];
+        client.read();
+        String motor_sens = "";
+        motor_sens = client.read();
+        client.read();
+        String s2 = "";
+        if(client.available())
+        {
+          r = client.read();
+        }
+        if(client.available())
+        {
+          p = client.read();
+        }
+        else{
+          p = ' ';
+        }
+        if(client.available())
+        {
+          m = client.read();
+        }
+        else{
+          m = ' ';
+        }
+        String s1 = "b'START + ";
+        if(r != ' ')
+          s2 = s2 + r;
+        if(p != ' ')
+          s2 = s2 + p;
+        if(m != ' ')
+          s2 = s2 + m;
+        String s3 = "'";
+        String s4 = " + ";
+        Serial.println(s1 + motor_sens + s4 + s2 + s3);
+     }
+     if( input == 'X' )
+     {
+        stop_test();
+     }
+
+   }
+   output = "";
+   temperature_test();
+   voltage_test();
+   speed_test();
+   client.print(output);
+   delay(1000);
+}
+
+void stop_test(){
+    Serial.println("b'STOP'");
+    test_case = '0';
+}
+
+void temperature_test(){
+    float h = dht.readHumidity();
+    float t = dht.readTemperature(); 
+    float mh = dht_motor.readHumidity();
+    float mt = dht_motor.readTemperature();
+    String s1 = "T=";
+    String s2 = " ";
+    String s3 = "H=";
+    output = output + "T=" + String(t,2) + " H=" + String(h,2) + " T=" + String(mt,2) + " H=" + String(mh,2) + " ";
+}
+
+void voltage_test(){
+    voltage_value = analogRead(ANALOGPIN);
+    output = output + String(voltage_value, 2) + " ";
+}
+
+void speed_test(){
+    output = output + "10000";
+}

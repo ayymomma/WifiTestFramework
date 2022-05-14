@@ -9,7 +9,6 @@ from customWidgets.components.customButton import CustomButton
 from customWidgets.components.customCheckBox import CustomCheckBox
 from customWidgets.components.customLineEdit import CustomLineEdit
 from customWidgets.components.customProgressBar import CustomProgressBar
-from customWidgets.windows.graphWindow import GraphWindow
 from customWidgets.windows.motorStateWindow import FlagsWindow
 from customWidgets.windows.speedWindow import SpeedWindow
 from customWidgets.windows.temperatureWindow import TemperatureWindow

@@ -21,8 +21,8 @@ class TestExecution(QObject):
     testCase = 1
     minTemperature = 5
     maxTemperature = 28
-    minVoltage = 8
-    maxVoltage = 18
+    minVoltage = -1
+    maxVoltage = 9999
     temperatureTest = False
     voltageTest = False
     temperatureHumidity = []
@@ -77,8 +77,7 @@ class TestExecution(QObject):
     def startTest(self, server):
         self.print_message_signal.emit('Test started.')
         self.start_test_signal.emit()
-        server.sendMessage("S {motorDirection} {testCase} {motorSpeed}".format(motorDirection=self.motorDirection,
-                                                                               testCase=self.testCase,
+        server.sendMessage("S {motorDirection} {motorSpeed}".format(motorDirection=self.motorDirection,
                                                                                motorSpeed=self.motorSpeed))
         server.receiveMessage()
         self.voltageGraph = None
@@ -98,7 +97,7 @@ class TestExecution(QObject):
             self.processServerValues(server, server.receiveMessage())
             self.graph_signal.emit([self.motorTemperatureGraph, self.voltageGraph])
             self.counter += 1
-            time.sleep(1)
+            time.sleep(0.5)
 
         if self.counter != self.testingTime + 5:
             self.stopTest(server, "Test finished with no errors!")

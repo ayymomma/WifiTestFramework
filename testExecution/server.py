@@ -21,9 +21,10 @@ class Server:
 
     def receiveMessage(self):
         # edit when pcb is ready
-        # data = self.client.recv(1024)
-        # data = data.decode()
-        data = "T=26.5 H=60 T=27.5 H=61 12 12100"
+        data = self.client.recv(1024)
+        data = data.decode()
+        # data = "T=26.5 H=60 T=27.5 H=61 12 12100"
+        print("Am primit " + data + " de la client!")
         return data
 
     def sendMessage(self, response):
@@ -32,5 +33,3 @@ class Server:
             print("Am trimis " + response + " catre client!")
         except BrokenPipeError:
             print("Client has been disconnected!")
-
-
