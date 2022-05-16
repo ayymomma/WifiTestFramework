@@ -14,8 +14,9 @@ class TestExecution(QObject):
     graph_signal = pyqtSignal(list)
     print_message_signal = pyqtSignal(str)
 
-    testingTime = 30
+    testingTime = 60
     motorSpeed = 100
+    newMotorSpeed = 100
     motorDirection = 1
     counter = 1
     testCase = 1
@@ -40,7 +41,7 @@ class TestExecution(QObject):
         super().__init__()
 
     def setMotorSpeed(self, value):
-        self.motorSpeed = value
+        self.newMotorSpeed = value
 
     def setMotorDirection(self, value):
         self.motorDirection = value
@@ -75,10 +76,12 @@ class TestExecution(QObject):
         print(self.maxVoltage)
 
     def startTest(self, server):
+        if self.newMotorSpeed != self.motorSpeed:
+            self.motorSpeed = self.newMotorSpeed
         self.print_message_signal.emit('Test started.')
         self.start_test_signal.emit()
         server.sendMessage("S {motorDirection} {motorSpeed}".format(motorDirection=self.motorDirection,
-                                                                               motorSpeed=self.motorSpeed))
+                                                                    motorSpeed=self.motorSpeed))
         server.receiveMessage()
         self.voltageGraph = None
         self.motorTemperatureGraph = None
@@ -87,13 +90,12 @@ class TestExecution(QObject):
         self.yFlagTemperature = []
         self.yFlagVoltage = []
 
-
         while self.counter <= self.testingTime:
+            if self.newMotorSpeed != self.motorSpeed:
+                self.motorSpeed = self.newMotorSpeed
+                server.sendMessage(str(self.motorSpeed))
             self.xFlagValues.append(self.counter)
             self.counter_signal.emit(int(self.counter * 100 / self.testingTime))
-            # send parameters to uC
-            # receive from uC values
-            # send signals to windows
             self.processServerValues(server, server.receiveMessage())
             self.graph_signal.emit([self.motorTemperatureGraph, self.voltageGraph])
             self.counter += 1
@@ -131,8 +133,11 @@ class TestExecution(QObject):
             self.temperature_signal.emit(self.temperatureHumidity)
             self.voltage = message.split(" ")[4]
             self.voltage_signal.emit(float(self.voltage))
-            self.speed = message.split(" ")[5]
-            self.speed_signal.emit(float(self.speed))
+            try:
+                self.speed = message.split(" ")[5]
+                self.speed_signal.emit(float(self.speed))
+            except:
+                pass
 
             flag, status = self.checkTemperature(float(self.temperatureHumidity[0].split("=")[1]), 'Motor')
             self.yFlagTemperature.append(int(not flag))
@@ -167,4 +172,3 @@ class TestExecution(QObject):
         print(self.xFlagValues)
         print(self.yFlagTemperature)
         print(self.yFlagVoltage)
-

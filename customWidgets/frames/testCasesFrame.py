@@ -290,13 +290,13 @@ class TestCasesFrame(QFrame):
             self.testExecution.stopTest(self.server, "Test stopped by user")
 
     def onSliderChangedHandler(self, value):
-        value = int((value / 13000) * 100)
+        # value = int((value / 13000) * 100)
         self.testExecution.setMotorSpeed(value)
-        print(self.testExecution.motorSpeed)
+        # print(self.testExecution.motorSpeed)
 
     def onChangeDirectionHandler(self, value):
         self.testExecution.setMotorDirection(value)
-        print(self.testExecution.motorDirection)
+        # print(self.testExecution.motorDirection)
 
     def determineTestcase(self):
         self.testExecution.testCase = 6
