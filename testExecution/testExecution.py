@@ -14,7 +14,7 @@ class TestExecution(QObject):
     graph_signal = pyqtSignal(list)
     print_message_signal = pyqtSignal(str)
 
-    testingTime = 60
+    testingTime = 30
     motorSpeed = 100
     newMotorSpeed = 100
     motorDirection = 1
@@ -32,6 +32,7 @@ class TestExecution(QObject):
     hBridgeTemperatureGraph = None
     motorTemperatureGraph = None
     voltageGraph = None
+    failed = False
 
     xFlagValues = []
     yFlagTemperature = []
@@ -82,26 +83,28 @@ class TestExecution(QObject):
         self.start_test_signal.emit()
         server.sendMessage("S {motorDirection} {motorSpeed}".format(motorDirection=self.motorDirection,
                                                                     motorSpeed=self.motorSpeed))
-        server.receiveMessage()
+
         self.voltageGraph = None
         self.motorTemperatureGraph = None
         self.counter = 1
+        self.failed = False
         self.xFlagValues = []
         self.yFlagTemperature = []
         self.yFlagVoltage = []
 
         while self.counter <= self.testingTime:
-            if self.newMotorSpeed != self.motorSpeed:
-                self.motorSpeed = self.newMotorSpeed
-                server.sendMessage(str(self.motorSpeed))
-            self.xFlagValues.append(self.counter)
-            self.counter_signal.emit(int(self.counter * 100 / self.testingTime))
-            self.processServerValues(server, server.receiveMessage())
-            self.graph_signal.emit([self.motorTemperatureGraph, self.voltageGraph])
-            self.counter += 1
-            time.sleep(0.5)
+            if server.messageReceived:
+                if self.newMotorSpeed != self.motorSpeed:
+                    self.motorSpeed = self.newMotorSpeed
+                    server.sendMessage(str(self.motorSpeed))
+                self.xFlagValues.append(self.counter)
+                self.counter_signal.emit(int(self.counter * 100 / self.testingTime))
+                self.processServerValues(server, server.data)
+                self.graph_signal.emit([self.motorTemperatureGraph, self.voltageGraph])
+                self.counter += 1
+            time.sleep(1)
 
-        if self.counter != self.testingTime + 5:
+        if not self.failed:
             self.stopTest(server, "Test finished with no errors!")
 
     def checkVoltage(self, voltage):
@@ -132,43 +135,62 @@ class TestExecution(QObject):
             self.temperatureHumidity = message.split(" ")[0:4]
             self.temperature_signal.emit(self.temperatureHumidity)
             self.voltage = message.split(" ")[4]
+            self.voltage = round((float(self.voltage) * 12.5) / 648, 2)
             self.voltage_signal.emit(float(self.voltage))
             try:
-                self.speed = message.split(" ")[5]
+                self.speed = round((self.voltage * ((self.motorSpeed * 13000) / 250)) / 12, 2)
                 self.speed_signal.emit(float(self.speed))
             except:
                 pass
 
-            flag, status = self.checkTemperature(float(self.temperatureHumidity[0].split("=")[1]), 'Motor')
-            self.yFlagTemperature.append(int(not flag))
+            flag, status = self.checkTemperature(float(self.temperatureHumidity[0].split("=")[1]), 'H Bridge')
             if not flag:
+                self.yFlagTemperature.append(int(not flag))
+                self.yFlagVoltage.append(0)
+                self.failed = True
                 self.stopTest(server, status)
-            flag, status = self.checkTemperature(float(self.temperatureHumidity[2].split("=")[1]), 'H Bridge')
+                return
+
+            flag, status = self.checkTemperature(float(self.temperatureHumidity[2].split("=")[1]), 'Motor')
             if not flag:
+                self.yFlagTemperature.append(int(not flag))
+                self.yFlagVoltage.append(0)
+                self.failed = True
                 self.stopTest(server, status)
+                return
+
+            self.yFlagTemperature.append(0)
             flag, status = self.checkVoltage(float(self.voltage))
             self.yFlagVoltage.append(int(not flag))
             if not flag:
+                self.failed = True
                 self.stopTest(server, status)
-        print(message)
+                return
+
 
     def stopTest(self, server, status):
+        self.counter = self.testingTime + 5
         while len(self.xFlagValues) < 30:
             self.xFlagValues.append(self.xFlagValues[-1] + 1)
             self.yFlagVoltage.append(0)
             self.yFlagTemperature.append(0)
-            # self.y_values_distance.append(0)
 
         if len(self.xFlagValues) > 30:
             self.xFlagValues = self.xFlagValues[0:29]
             self.yFlagVoltage = self.yFlagVoltage[0:29]
-            # self.y_values_distance = self.y_values_distance[0:29]
             self.yFlagTemperature = self.yFlagTemperature[0:29]
 
-        self.counter = self.testingTime + 5
+
         server.sendMessage("X")
         self.print_message_signal.emit(status)
+        if self.failed:
+            time.sleep(1)
+            self.print_message_signal.emit('Test failed!')
+        if status.find("Motor") != -1:
+            time.sleep(1)
+            self.print_message_signal.emit("Temperature:" + self.temperatureHumidity[0].split("=")[1])
+        if status.find("H Bridge") != -1:
+            time.sleep(1)
+            self.print_message_signal.emit("Temperature:" + self.temperatureHumidity[2].split("=")[1])
         self.stop_test_signal.emit()
-        print(self.xFlagValues)
-        print(self.yFlagTemperature)
-        print(self.yFlagVoltage)
+

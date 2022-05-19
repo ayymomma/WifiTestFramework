@@ -260,20 +260,22 @@ class TestCasesFrame(QFrame):
                 self.speedWindowOn = False
 
     def startTestButton(self):
-        if self.temperatureWindowOn:
-            self.temperatureWindow.show()
-            self.testExecution.temperatureTest = True
-        if self.voltageWindowOn:
-            self.voltageWindow.show()
-            self.testExecution.voltageTest = True
-        if self.speedWindowOn:
-            self.speedWindow.show()
-        self.startButton.setEnabled(False)
-        self.stopButton.setEnabled(True)
-        self.determineTestcase()
-        threading.Thread(target=self.testExecution.startTest, args=(self.server, )).start()
+        if self.server.connected:
+            if self.temperatureWindowOn:
+                self.temperatureWindow.show()
+                self.testExecution.temperatureTest = True
+            if self.voltageWindowOn:
+                self.voltageWindow.show()
+                self.testExecution.voltageTest = True
+            if self.speedWindowOn:
+                self.speedWindow.show()
+            self.startButton.setEnabled(False)
+            self.stopButton.setEnabled(True)
+            self.determineTestcase()
+            threading.Thread(target=self.testExecution.startTest, args=(self.server, )).start()
 
     def stopTestButton(self, signal=False):
+        print(signal)
         if self.temperatureWindowOn:
             self.temperatureWindow.hide()
             self.testExecution.temperatureTest = False
@@ -290,13 +292,10 @@ class TestCasesFrame(QFrame):
             self.testExecution.stopTest(self.server, "Test stopped by user")
 
     def onSliderChangedHandler(self, value):
-        # value = int((value / 13000) * 100)
         self.testExecution.setMotorSpeed(value)
-        # print(self.testExecution.motorSpeed)
 
     def onChangeDirectionHandler(self, value):
         self.testExecution.setMotorDirection(value)
-        # print(self.testExecution.motorDirection)
 
     def determineTestcase(self):
         self.testExecution.testCase = 6

@@ -33,12 +33,10 @@ class FlagsWindow(QDialog):
         self.varNameLineEdit = CustomLineEdit(self)
         self.valuesLineEdit = CustomLineEdit(self)
         self.temperatureLabel = QtWidgets.QLabel(self)
-        self.ultrasonicLabel = QtWidgets.QLabel(self)
         self.voltageLabel = QtWidgets.QLabel(self)
         self.motorStateLabel = QtWidgets.QLabel(self)
         self.temperatureLineEdit = CustomLineEdit(self)
         self.voltageLineEdit = CustomLineEdit(self)
-        self.distanceLineEdit = CustomLineEdit(self)
         self.motorStateLineEdit = CustomLineEdit(self)
         self.graphicsView = MyGraphicsView(self)
 
@@ -87,13 +85,6 @@ class FlagsWindow(QDialog):
                                             "\n"
                                             "")
 
-        self.ultrasonicLabel.setGeometry(QtCore.QRect(20, 220, 81, 16))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.ultrasonicLabel.setFont(font)
-        self.ultrasonicLabel.setStyleSheet("color: blue;\n"
-                                           "")
-
         self.voltageLabel.setGeometry(QtCore.QRect(20, 160, 141, 16))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -112,9 +103,6 @@ class FlagsWindow(QDialog):
         self.voltageLineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.voltageLineEdit.setLineEditStyle()
 
-        self.distanceLineEdit.setGeometry(QtCore.QRect(300, 220, 113, 22))
-        self.distanceLineEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.distanceLineEdit.setLineEditStyle()
 
         self.motorStateLineEdit.setGeometry(QtCore.QRect(300, 280, 113, 22))
         self.motorStateLineEdit.setAlignment(QtCore.Qt.AlignCenter)
@@ -127,30 +115,29 @@ class FlagsWindow(QDialog):
         self.varNameLineEdit.setText("VARIABLES NAME")
         self.valuesLineEdit.setText("VALUES")
         self.temperatureLabel.setText("H-Bridge & Motor Temperature")
-        self.ultrasonicLabel.setText("Ultrasonic Sensor")
         self.voltageLabel.setText("DC - Link")
         self.motorStateLabel.setText("Motor State")
         QtCore.QMetaObject.connectSlotsByName(self)
 
-    def draw_flags(self, x_vals, y_temp_vals, y_voltage_vals, y_distance_vals=None):
+    def draw_flags(self, x_vals, y_temp_vals, y_voltage_vals):
 
-        if y_distance_vals is None:
-            y_distance_vals = [0] * 30
 
         self.scene = QtWidgets.QGraphicsScene()
         self.graphicsView.setScene(self.scene)
 
-        self.x_vals = x_vals
-        self.y_temp = y_temp_vals
-        self.y_volt = y_voltage_vals
-        self.y_dist = y_distance_vals
+        self.x_vals = [0] + x_vals
+        self.y_temp = [0] + y_temp_vals
+        self.y_volt = [0] + y_voltage_vals
+
+        print(self.x_vals)
+        print(self.y_temp)
+        print(self.y_volt)
 
         self.fsf_vals = [1] * 30
 
         for i in range(1, len(x_vals)):
             red_pen = QtGui.QPen(QtCore.Qt.red)
             yellow_pen = QtGui.QPen(QtCore.Qt.yellow)
-            blue_pen = QtGui.QPen(QtCore.Qt.blue)
             green_pen = QtGui.QPen(QtCore.Qt.green)
             if y_temp_vals[i] == 1:
                 self.fsf_vals[i] = 2
@@ -198,31 +185,6 @@ class FlagsWindow(QDialog):
                                       QtCore.QPoint((x_vals[i] * 19) * 1, (y_voltage_vals[i] * 20 - 50) * (-1)))
                     self.scene.addLine(r, yellow_pen)
 
-            if y_distance_vals[i] == 1:
-                self.fsf_vals[i] = 4
-                for j in range(i + 1, len(self.fsf_vals)):
-                    self.fsf_vals[j] = 0
-                r = QtCore.QLineF(QtCore.QPoint((x_vals[i - 1] * 19) * 1, (y_distance_vals[i - 1] * 20 - 100) * (-1)),
-                                  QtCore.QPoint(((x_vals[i - 1]) * 19) * 1, (y_distance_vals[i] * 20 - 100) * (-1)))
-                self.scene.addLine(r, blue_pen)
-                r = QtCore.QLineF(QtCore.QPoint((x_vals[i - 1] * 19) * 1, (y_distance_vals[i] * 20 - 100) * (-1)),
-                                  QtCore.QPoint((x_vals[i] * 19) * 1, (y_distance_vals[i] * 20 - 100) * (-1)))
-                self.scene.addLine(r, blue_pen)
-                r = QtCore.QLineF(QtCore.QPoint((x_vals[i] * 19) * 1, (y_distance_vals[i] * 20 - 100) * (-1)),
-                                  QtCore.QPoint((x_vals[i] * 19) * 1, (y_distance_vals[i - 1] * 20 - 100) * (-1)))
-                self.scene.addLine(r, blue_pen)
-            else:
-                if y_distance_vals[i - 1] == 1:
-                    r = QtCore.QLineF(
-                        QtCore.QPoint((x_vals[i - 1] * 19) * 1, (y_distance_vals[i] * 20 - 100) * (-1)),
-                        QtCore.QPoint((x_vals[i] * 19) * 1, (y_distance_vals[i] * 20 - 100) * (-1)))
-                    self.scene.addLine(r, blue_pen)
-                else:
-                    r = QtCore.QLineF(
-                        QtCore.QPoint((x_vals[i - 1] * 19) * 1, (y_distance_vals[i - 1] * 20 - 100) * (-1)),
-                        QtCore.QPoint((x_vals[i] * 19) * 1, (y_distance_vals[i] * 20 - 100) * (-1)))
-                    self.scene.addLine(r, blue_pen)
-
             if self.fsf_vals[i] == 2 or self.fsf_vals[i] == 3 or self.fsf_vals[i] == 4:
                 r = QtCore.QLineF(QtCore.QPoint((x_vals[i - 1] * 19) * 1, (self.fsf_vals[i - 1] * 20 - 200) * (-1)),
                                   QtCore.QPoint((x_vals[i - 1] * 19) * 1, (self.fsf_vals[i] * 20 - 200) * (-1)))
@@ -256,7 +218,6 @@ class FlagsWindow(QDialog):
             try:
                 self.temperatureLineEdit.setText(str(self.y_temp[int(self.x_value_mouse_move / 20 + 1)]))
                 self.voltageLineEdit.setText(str(self.y_volt[int(self.x_value_mouse_move / 20 + 1)]))
-                self.distanceLineEdit.setText(str(self.y_dist[int(self.x_value_mouse_move / 20 + 1)]))
                 self.motorStateLineEdit.setText(str(self.fsf_vals[int(self.x_value_mouse_move / 20 + 1)]))
             except IndexError:
                 print("IndexError")

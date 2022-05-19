@@ -1,0 +1,88 @@
+19/05/2022 12:29:58: Log file created
+19/05/2022 12:32:44: Test started.
+19/05/2022 12:32:59: Log file created
+19/05/2022 12:35:07: Test started.
+19/05/2022 12:40:11: Log file created
+19/05/2022 12:40:38: Test started.
+19/05/2022 12:41:37: Log file created
+19/05/2022 12:48:15: Test started.
+19/05/2022 12:48:18: Test stopped by user
+19/05/2022 12:48:55: Log file created
+19/05/2022 12:55:04: Test started.
+19/05/2022 12:55:04: Motor temperature is out of range.
+19/05/2022 12:55:04: H Bridge temperature is out of range.
+19/05/2022 12:57:29: Log file created
+19/05/2022 13:00:47: Test started.
+19/05/2022 13:01:18: Test finished with no errors!
+19/05/2022 13:04:53: Log file created
+19/05/2022 13:04:57: Test started.
+19/05/2022 13:06:54: Log file created
+19/05/2022 13:06:55: Test started.
+19/05/2022 13:07:00: Test stopped by user
+19/05/2022 13:10:40: Log file created
+19/05/2022 13:14:55: Test started.
+19/05/2022 13:15:39: Log file created
+19/05/2022 13:15:56: Test started.
+19/05/2022 13:16:26: Test finished with no errors!
+19/05/2022 13:18:47: Test started.
+19/05/2022 13:22:12: Log file created
+19/05/2022 13:25:58: Test started.
+19/05/2022 13:26:32: Log file created
+19/05/2022 13:26:57: Log file created
+19/05/2022 13:27:32: Log file created
+19/05/2022 13:28:03: Test started.
+19/05/2022 13:29:14: Log file created
+19/05/2022 13:29:37: Test started.
+19/05/2022 13:30:08: Test finished with no errors!
+19/05/2022 13:30:26: Test started.
+19/05/2022 13:31:09: Test stopped by user
+19/05/2022 17:53:29: Log file created
+19/05/2022 21:06:00: Log file created
+19/05/2022 21:06:19: Log file created
+19/05/2022 21:06:50: Test started.
+19/05/2022 21:07:26: Log file created
+19/05/2022 21:11:06: Test started.
+19/05/2022 21:11:28: Log file created
+19/05/2022 21:14:16: Log file created
+19/05/2022 21:14:51: Test started.
+19/05/2022 21:15:39: Test finished with no errors!
+19/05/2022 21:15:45: Test started.
+19/05/2022 21:16:02: Log file created
+19/05/2022 21:16:30: Test started.
+19/05/2022 21:17:01: Test finished with no errors!
+19/05/2022 21:17:49: Log file created
+19/05/2022 21:25:07: Test started.
+19/05/2022 21:25:25: H Bridge temperature is out of range.
+19/05/2022 21:54:01: Log file created
+19/05/2022 21:54:36: Log file created
+19/05/2022 21:57:58: Log file created
+19/05/2022 21:59:34: Log file created
+19/05/2022 23:39:45: Log file created
+19/05/2022 23:40:04: Test started.
+19/05/2022 23:40:34: Test finished with no errors!
+19/05/2022 23:41:14: Log file created
+19/05/2022 23:41:34: Test started.
+19/05/2022 23:41:47: Test stopped by user
+19/05/2022 23:42:50: Log file created
+19/05/2022 23:43:12: Test started.
+19/05/2022 23:43:36: Test stopped by user
+19/05/2022 23:43:54: Test started.
+19/05/2022 23:46:11: Log file created
+19/05/2022 23:46:35: Test started.
+19/05/2022 23:47:28: Log file created
+19/05/2022 23:47:41: Test started.
+19/05/2022 23:48:47: Log file created
+19/05/2022 23:49:03: Test started.
+19/05/2022 23:52:32: Log file created
+19/05/2022 23:52:46: Test started.
+19/05/2022 23:53:19: Test stopped by user
+19/05/2022 23:53:36: Log file created
+19/05/2022 23:53:52: Test started.
+19/05/2022 23:54:58: Test finished with no errors!
+19/05/2022 23:55:07: Test started.
+19/05/2022 23:55:19: Test stopped by user
+19/05/2022 23:55:21: Test started.
+19/05/2022 23:55:45: Test stopped by user
+20/05/2022 00:43:32: Test started.
+20/05/2022 00:43:53: Test stopped by user
+20/05/2022 00:44:14: Test started.

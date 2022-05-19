@@ -1,0 +1,208 @@
+20/05/2022 00:44:49: Log file created
+20/05/2022 00:45:16: Test started.
+20/05/2022 00:45:35: H Bridge temperature is out of range.
+20/05/2022 00:45:36: Test finished with no errors!
+20/05/2022 00:51:25: Log file created
+20/05/2022 00:51:34: Log file created
+20/05/2022 01:05:11: Test started.
+20/05/2022 01:05:21: H Bridge temperature is out of range.
+20/05/2022 01:05:22: Test finished with no errors!
+20/05/2022 01:05:32: Test started.
+20/05/2022 01:05:41: Test stopped by user
+20/05/2022 01:05:47: Log file created
+20/05/2022 01:06:06: Test started.
+20/05/2022 01:06:15: Test stopped by user
+20/05/2022 01:07:20: Log file created
+20/05/2022 01:07:42: Test started.
+20/05/2022 01:08:08: H Bridge temperature is out of range.
+20/05/2022 01:08:09: Test finished with no errors!
+20/05/2022 01:11:17: Log file created
+20/05/2022 01:11:31: Test started.
+20/05/2022 01:11:37: H Bridge temperature is out of range.
+20/05/2022 01:11:38: Test finished with no errors!
+20/05/2022 01:13:15: Log file created
+20/05/2022 01:13:41: Test started.
+20/05/2022 01:13:55: H Bridge temperature is out of range.
+20/05/2022 01:13:56: Test finished with no errors!
+20/05/2022 01:16:24: Log file created
+20/05/2022 01:16:40: Test started.
+20/05/2022 01:16:46: H Bridge temperature is out of range.
+20/05/2022 01:19:07: Log file created
+20/05/2022 01:19:25: Test started.
+20/05/2022 01:19:31: H Bridge temperature is out of range.
+20/05/2022 01:19:50: Log file created
+20/05/2022 01:20:00: Test started.
+20/05/2022 01:20:14: H Bridge temperature is out of range.
+20/05/2022 01:20:45: Log file created
+20/05/2022 01:20:56: Test started.
+20/05/2022 01:21:02: H Bridge temperature is out of range.
+20/05/2022 01:21:49: Log file created
+20/05/2022 01:22:03: Test started.
+20/05/2022 01:22:09: H Bridge temperature is out of range.
+20/05/2022 01:22:10: Test failed!
+20/05/2022 01:22:24: Test started.
+20/05/2022 01:22:28: Test stopped by user
+20/05/2022 01:22:29: Test finished with no errors!
+20/05/2022 01:22:40: Test started.
+20/05/2022 01:22:40: Motor temperature is out of range.
+20/05/2022 01:22:41: Test failed!
+20/05/2022 01:22:41: H Bridge temperature is out of range.
+20/05/2022 01:22:42: Test failed!
+20/05/2022 01:22:53: Log file created
+20/05/2022 01:23:06: Test started.
+20/05/2022 01:23:12: H Bridge temperature is out of range.
+20/05/2022 01:23:13: Test failed!
+20/05/2022 01:23:36: Log file created
+20/05/2022 01:23:49: Test started.
+20/05/2022 01:23:55: H Bridge temperature is out of range.
+20/05/2022 01:23:56: Test failed!
+20/05/2022 01:25:33: Log file created
+20/05/2022 01:25:48: Test started.
+20/05/2022 01:25:57: Test stopped by user
+20/05/2022 01:25:58: Temperature:25.20
+20/05/2022 01:25:59: Temperature:27.10
+20/05/2022 01:25:59: Test finished with no errors!
+20/05/2022 01:25:59: Temperature:25.20
+20/05/2022 01:26:00: Temperature:27.10
+20/05/2022 01:26:32: Log file created
+20/05/2022 01:26:42: Test started.
+20/05/2022 01:26:50: Test stopped by user
+20/05/2022 01:26:50: Test finished with no errors!
+20/05/2022 01:26:55: Test started.
+20/05/2022 01:26:55: Motor temperature is out of range.
+20/05/2022 01:26:56: Test failed!
+20/05/2022 01:26:57: Temperature:25.20
+20/05/2022 01:26:57: H Bridge temperature is out of range.
+20/05/2022 01:26:58: Test failed!
+20/05/2022 01:26:59: Temperature:27.00
+20/05/2022 01:27:46: Log file created
+20/05/2022 01:27:59: Test started.
+20/05/2022 01:28:05: Motor temperature is out of range.
+20/05/2022 01:28:06: Test failed!
+20/05/2022 01:28:07: Temperature:25.30
+20/05/2022 01:28:07: H Bridge temperature is out of range.
+20/05/2022 01:28:08: Test failed!
+20/05/2022 01:28:09: Temperature:26.90
+20/05/2022 01:28:46: Log file created
+20/05/2022 01:28:59: Test started.
+20/05/2022 01:29:24: Test stopped by user
+20/05/2022 01:29:24: Test finished with no errors!
+20/05/2022 01:29:33: Test started.
+20/05/2022 01:29:33: H Bridge temperature is out of range.
+20/05/2022 01:29:34: Test failed!
+20/05/2022 01:29:35: Temperature:26.80
+20/05/2022 01:30:02: Log file created
+20/05/2022 01:30:11: Test started.
+20/05/2022 01:30:22: Test stopped by user
+20/05/2022 01:30:22: Test finished with no errors!
+20/05/2022 01:30:27: Test started.
+20/05/2022 01:30:27: H Bridge temperature is out of range.
+20/05/2022 01:30:28: Test failed!
+20/05/2022 01:30:29: Temperature:26.70
+20/05/2022 01:30:39: Test started.
+20/05/2022 01:30:39: H Bridge temperature is out of range.
+20/05/2022 01:30:40: Test failed!
+20/05/2022 01:30:41: Temperature:26.70
+20/05/2022 01:30:52: Test started.
+20/05/2022 01:30:52: H Bridge temperature is out of range.
+20/05/2022 01:30:53: Test failed!
+20/05/2022 01:30:54: Temperature:26.70
+20/05/2022 01:32:30: Log file created
+20/05/2022 01:32:42: Test started.
+20/05/2022 01:32:53: Test stopped by user
+20/05/2022 01:32:56: Test finished with no errors!
+20/05/2022 01:33:10: Test started.
+20/05/2022 01:33:10: H Bridge temperature is out of range.
+20/05/2022 01:33:11: Test failed!
+20/05/2022 01:33:12: Temperature:26.70
+20/05/2022 01:33:20: Log file created
+20/05/2022 01:33:34: Test started.
+20/05/2022 01:33:40: H Bridge temperature is out of range.
+20/05/2022 01:33:41: Test failed!
+20/05/2022 01:33:42: Temperature:26.70
+20/05/2022 01:35:39: Log file created
+20/05/2022 01:35:54: Test started.
+20/05/2022 01:36:00: H Bridge temperature is out of range.
+20/05/2022 01:36:01: Test failed!
+20/05/2022 01:36:02: Temperature:26.70
+20/05/2022 01:36:30: Log file created
+20/05/2022 01:36:48: Test started.
+20/05/2022 01:36:54: H Bridge temperature is out of range.
+20/05/2022 01:36:55: Test failed!
+20/05/2022 01:36:56: Temperature:26.50
+20/05/2022 01:37:59: Log file created
+20/05/2022 01:38:19: Test started.
+20/05/2022 01:40:27: Log file created
+20/05/2022 01:40:39: Test started.
+20/05/2022 01:43:05: Log file created
+20/05/2022 01:43:12: Log file created
+20/05/2022 01:43:23: Test started.
+20/05/2022 01:45:42: Log file created
+20/05/2022 01:45:59: Test started.
+20/05/2022 01:47:44: Log file created
+20/05/2022 01:47:58: Test started.
+20/05/2022 01:49:06: Log file created
+20/05/2022 01:49:22: Test started.
+20/05/2022 01:49:30: Test stopped by user
+20/05/2022 01:49:32: Test finished with no errors!
+20/05/2022 01:49:41: Test started.
+20/05/2022 01:49:41: H Bridge temperature is out of range.
+20/05/2022 01:49:42: Test failed!
+20/05/2022 01:49:43: Temperature:26.60
+20/05/2022 01:51:18: Log file created
+20/05/2022 01:51:30: Test started.
+20/05/2022 01:51:36: H Bridge temperature is out of range.
+20/05/2022 01:51:37: Test failed!
+20/05/2022 01:51:38: Temperature:26.80
+20/05/2022 01:55:12: Log file created
+20/05/2022 01:55:24: Test started.
+20/05/2022 01:55:30: H Bridge temperature is out of range.
+20/05/2022 01:55:31: Test failed!
+20/05/2022 01:55:32: Temperature:26.60
+20/05/2022 01:55:56: Log file created
+20/05/2022 01:56:12: Test started.
+20/05/2022 01:56:18: H Bridge temperature is out of range.
+20/05/2022 01:56:19: Test failed!
+20/05/2022 01:56:20: Temperature:26.50
+20/05/2022 01:57:06: Log file created
+20/05/2022 01:57:22: Test started.
+20/05/2022 01:57:28: H Bridge temperature is out of range.
+20/05/2022 01:57:29: Test failed!
+20/05/2022 01:57:30: Temperature:26.50
+20/05/2022 01:58:26: Log file created
+20/05/2022 01:58:55: Test started.
+20/05/2022 01:59:01: H Bridge temperature is out of range.
+20/05/2022 01:59:02: Test failed!
+20/05/2022 01:59:03: Temperature:26.50
+20/05/2022 01:59:23: Log file created
+20/05/2022 01:59:37: Test started.
+20/05/2022 01:59:53: Motor temperature is out of range.
+20/05/2022 01:59:54: Test failed!
+20/05/2022 01:59:55: Temperature:26.00
+20/05/2022 02:01:52: Log file created
+20/05/2022 02:02:11: Test started.
+20/05/2022 02:02:17: Motor temperature is out of range.
+20/05/2022 02:02:18: Test failed!
+20/05/2022 02:02:19: Temperature:26.10
+20/05/2022 02:02:30: Test started.
+20/05/2022 02:02:44: Motor temperature is out of range.
+20/05/2022 02:02:45: Test failed!
+20/05/2022 02:02:46: Temperature:27.30
+20/05/2022 02:04:03: Log file created
+20/05/2022 02:04:17: Test started.
+20/05/2022 02:04:23: Motor temperature is out of range.
+20/05/2022 02:04:24: Test failed!
+20/05/2022 02:04:25: Temperature:27.40
+20/05/2022 02:04:45: Test started.
+20/05/2022 02:04:55: Motor temperature is out of range.
+20/05/2022 02:04:56: Test failed!
+20/05/2022 02:04:57: Temperature:27.80
+20/05/2022 02:06:12: Log file created
+20/05/2022 02:06:28: Test started.
+20/05/2022 02:06:34: Motor temperature is out of range.
+20/05/2022 02:06:35: Test failed!
+20/05/2022 02:06:36: Temperature:27.80
+20/05/2022 02:07:06: Test started.
+20/05/2022 02:07:12: Motor temperature is out of range.
+20/05/2022 02:07:13: Test failed!
+20/05/2022 02:07:14: Temperature:28.00

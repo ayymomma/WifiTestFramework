@@ -1,3 +1,5 @@
+import threading
+
 from PyQt5.QtWidgets import QWidget
 from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.figure import Figure
@@ -69,4 +71,4 @@ class GraphWindow(QWidget):
         self.timer.stop()
 
     def onGraphHandler(self, dataList):
-        self.update_plot(dataList[0], dataList[1])
+        threading.Thread(target=self.update_plot, args=(dataList[0], dataList[1])).start()
