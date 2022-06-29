@@ -14,6 +14,9 @@ from testExecution.server import Server
 
 class MainWindow(QMainWindow):
     def __init__(self):
+        """
+        Initialize main window of the application
+        """
         super(MainWindow, self).__init__()
         self.server = Server('0.0.0.0', 50100)
 
@@ -28,6 +31,9 @@ class MainWindow(QMainWindow):
         self.setupUi()
 
     def setupUi(self):
+        """
+        Setup main window interface and connect all signals caught in this class.
+        """
         self.setWindowTitle("Wifi Test")
         self.resize(1280, 768)
         self.setMinimumSize(1280, 768)
@@ -42,6 +48,13 @@ class MainWindow(QMainWindow):
 
 
 def kill_proc_tree(pid, including_parent=True):
+    """
+    Function to kill processes
+    :param pid: The ID of process
+    :type pid: int
+    :param including_parent: True if you want to kill parents too
+    :type including_parent: bool
+    """
     parent = psutil.Process(pid)
     if including_parent:
         parent.kill()

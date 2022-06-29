@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QRect
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QDialog, QLabel, QFrame
+from PyQt5.QtWidgets import QDialog, QLabel, QFrame, QWidget
 
 from customWidgets.components.customLineEdit import CustomLineEdit
 
@@ -18,6 +18,11 @@ QLabel {
 
 class SpeedWindow(QDialog):
     def __init__(self, parent=None):
+        """
+        Initialize the speed window\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
         super(SpeedWindow, self).__init__(parent)
         self.windowName = QLabel(self)
         self.horizontalLine = QFrame(self)
@@ -26,6 +31,9 @@ class SpeedWindow(QDialog):
         self.setupUi()
 
     def setupUi(self):
+        """
+        Set up the window size and components\n
+        """
         self.setObjectName("Speed")
         self.setWindowTitle("Speed")
         self.resize(278, 193)
@@ -63,4 +71,9 @@ class SpeedWindow(QDialog):
         self.setValue(0)
 
     def setValue(self, value):
+        """
+        Set the value of speed line edit\n
+        :param value: The value of speed
+        :type value: float
+        """
         self.lineEditSpeed.setText(str(value) + " RPM")

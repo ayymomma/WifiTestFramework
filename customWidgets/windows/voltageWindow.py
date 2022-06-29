@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QRect
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QDialog, QLabel, QFrame
+from PyQt5.QtWidgets import QDialog, QLabel, QFrame, QWidget
 
 from customWidgets.components.customLineEdit import CustomLineEdit
 
@@ -18,6 +18,11 @@ QLabel {
 
 class VoltageWindow(QDialog):
     def __init__(self, parent=None):
+        """
+        Initialize voltage window\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
         super(VoltageWindow, self).__init__(parent)
         self.windowName = QLabel(self)
         self.horizontalLine = QFrame(self)
@@ -27,6 +32,9 @@ class VoltageWindow(QDialog):
         self.setupUi()
 
     def setupUi(self):
+        """
+        Set up the window size and components
+        """
         self.setObjectName("Voltage")
         self.setWindowTitle("Voltage")
         self.resize(278, 193)
@@ -64,4 +72,9 @@ class VoltageWindow(QDialog):
         self.setValue(0)
 
     def setValue(self, value):
+        """
+        Set the value of the voltage line edit\n
+        :param value: Voltage to be shown
+        :type value: float
+        """
         self.lineEditVoltage.setText(str(value) + "V")

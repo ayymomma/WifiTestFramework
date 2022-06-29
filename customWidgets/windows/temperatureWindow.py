@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QRect
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QDialog, QLabel, QFrame
+from PyQt5.QtWidgets import QDialog, QLabel, QFrame, QWidget
 
 from customWidgets.components.customLineEdit import CustomLineEdit
 
@@ -18,6 +18,11 @@ QLabel {
 
 class TemperatureWindow(QDialog):
     def __init__(self, parent=None):
+        """
+        Initialize the window temperature\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
         super(TemperatureWindow, self).__init__(parent)
         self.windowName = QLabel(self)
         self.horizontalLine = QFrame(self)
@@ -34,6 +39,9 @@ class TemperatureWindow(QDialog):
         self.setupUi()
 
     def setupUi(self):
+        """
+        Set up the window size and components
+        """
         self.setObjectName("Temperature")
         self.setWindowTitle("Temperature and Humidity")
         self.resize(278, 193)
@@ -106,6 +114,11 @@ class TemperatureWindow(QDialog):
         self.setValue(["0=0", "0=0", "0=0", "0=0"])
 
     def setValue(self, value):
+        """
+        Set the value of temperature and humidity line edits\n
+        :param value: List of temperature and humidity
+        :type value: list
+        """
         bridgeTemp = value[0].split("=")[1] + "°C"
         bridgeHum = value[1].split("=")[1] + "%"
         motorTemp = value[2].split("=")[1] + "°C"

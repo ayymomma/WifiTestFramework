@@ -2,6 +2,7 @@ import time
 import matplotlib.pyplot as plt
 
 from PyQt5.QtCore import QObject, pyqtSignal
+from server import Server
 
 
 class TestExecution(QObject):
@@ -39,44 +40,77 @@ class TestExecution(QObject):
     yFlagVoltage = []
 
     def __init__(self):
+        """
+        Initialize the object
+        """
         super().__init__()
 
     def setMotorSpeed(self, value):
+        """
+        Set the motor speed\n
+        :param value: New motor speed
+        :type value: int
+        """
         self.newMotorSpeed = value
 
     def setMotorDirection(self, value):
+        """
+        Set the motor direction\n
+        :param value: New motor direction
+        :type value: int
+        """
         self.motorDirection = value
-        print(value)
 
     def setMinTemperature(self, value):
+        """
+        Set minimum temperature for tests\n
+        :param value: New minimum temperature
+        :type value: float
+        """
         try:
             self.minTemperature = int(value)
         except ValueError:
             self.minTemperature = 5
-        print(self.minTemperature)
 
     def setMaxTemperature(self, value):
+        """
+        Set maximum temperature for tests\n
+        :param value: New maximum temperature
+        :type value: float
+        """
         try:
             self.maxTemperature = int(value)
         except ValueError:
             self.maxTemperature = 28
-        print(self.maxTemperature)
 
     def setMinVoltage(self, value):
+        """
+        Set minimum voltage for tests\n
+        :param value: New minimum voltage
+        :type value: float
+        """
         try:
             self.minVoltage = int(value)
         except ValueError:
             self.minVoltage = 8
-        print(self.minVoltage)
 
     def setMaxVoltage(self, value):
+        """
+        Set maximum voltage for tests\n
+        :param value: New maximum voltage
+        :type value: float
+        """
         try:
             self.maxVoltage = int(value)
         except ValueError:
             self.maxVoltage = 18
-        print(self.maxVoltage)
 
     def startTest(self, server):
+        """
+        Start test execution\n
+        :param server: Application server for sending and receiving messages
+        :type server: Server
+        """
         if self.newMotorSpeed != self.motorSpeed:
             self.motorSpeed = self.newMotorSpeed
         self.print_message_signal.emit('Test started.')
@@ -108,6 +142,13 @@ class TestExecution(QObject):
             self.stopTest(server, "Test finished with no errors!")
 
     def checkVoltage(self, voltage):
+        """
+        Check if voltage is in limits\n
+        :param voltage: Voltage which will be tested
+        :type voltage: float
+        :return: False if voltage si out of range and the message 'Voltage is out of range' and True if voltage is in range
+        :rtype: (bool, str)
+        """
         if self.voltageTest:
             self.voltageGraph = voltage
             if voltage < self.minVoltage or voltage > self.maxVoltage:
@@ -118,9 +159,16 @@ class TestExecution(QObject):
             return True, ''
 
     def checkTemperature(self, temperature, name):
+        """
+        Check if temperature is in range\n
+        :param temperature: Temperature which will be tested
+        :type temperature: float
+        :param name: Name of component which corresponds to temperature
+        :type name: str
+        :return: False if temperature si out of range and the message '{name} is out of range' and True if temperature is in range
+        :rtype: (bool, str)
+        """
         if self.temperatureTest:
-            # if name == 'H Bridge':
-            #     self.hBridgeTemperatureList.append(temperature)
             if name == 'Motor':
                 self.motorTemperatureGraph = temperature
             if temperature < self.minTemperature or temperature > self.maxTemperature:
@@ -131,6 +179,15 @@ class TestExecution(QObject):
             return True, ''
 
     def processServerValues(self, server, message):
+        """
+        Split the message received from client and assign it to class variables\n
+        :param server: Reference to application server
+        :type server: Server
+        :param message: Message received from client
+        :type message: str
+        :return: None
+        :rtype: None
+        """
         if self.testCase == 6:
             self.temperatureHumidity = message.split(" ")[0:4]
             self.temperature_signal.emit(self.temperatureHumidity)
@@ -167,11 +224,20 @@ class TestExecution(QObject):
                 self.stopTest(server, status)
                 return
 
-
     def stopTest(self, server, status):
+        """
+        Stop test execution\n
+        :param server: Reference to application server
+        :type server: Server
+        :param status: Status of the test ( stopped by user, failed or finished )
+        :type status: str
+        """
         self.counter = self.testingTime + 5
         while len(self.xFlagValues) < 30:
-            self.xFlagValues.append(self.xFlagValues[-1] + 1)
+            try:
+                self.xFlagValues.append(self.xFlagValues[-1] + 1)
+            except:
+                self.xFlagValues.append(0)
             self.yFlagVoltage.append(0)
             self.yFlagTemperature.append(0)
 
@@ -179,7 +245,6 @@ class TestExecution(QObject):
             self.xFlagValues = self.xFlagValues[0:29]
             self.yFlagVoltage = self.yFlagVoltage[0:29]
             self.yFlagTemperature = self.yFlagTemperature[0:29]
-
 
         server.sendMessage("X")
         self.print_message_signal.emit(status)
@@ -193,4 +258,3 @@ class TestExecution(QObject):
             time.sleep(1)
             self.print_message_signal.emit("Temperature:" + self.temperatureHumidity[2].split("=")[1])
         self.stop_test_signal.emit()
-
