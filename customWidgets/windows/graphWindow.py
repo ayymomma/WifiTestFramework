@@ -9,6 +9,9 @@ from matplotlib.backends.backend_qt5 import NavigationToolbar2QT as NavigationTo
 
 class MplCanvas(Canvas):
     def __init__(self):
+        """
+        Initialize the canvas\n
+        """
         self.fig = Figure()
         self.axes = self.fig.add_subplot(111)
         Canvas.__init__(self, self.fig)
@@ -19,6 +22,11 @@ class MplCanvas(Canvas):
 class GraphWindow(QWidget):
 
     def __init__(self, parent=None):
+        """
+        Initialize graph window\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
         super(GraphWindow, self).__init__(parent)
 
         self.timer = None
@@ -42,12 +50,22 @@ class GraphWindow(QWidget):
         self.show()
 
     def start_timer(self):
+        """
+        Start the timer for updating graph\n
+        """
         self.timer = QtCore.QTimer()
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.update_plot)
         self.timer.start()
 
     def update_plot(self, temp=None, voltage=None):
+        """
+        Update graphic with new values of temperature and voltage\n
+        :param temp: New temperature value to be displayed
+        :type temp: float
+        :param voltage: New voltage value to be displayed
+        :type voltage: float
+        """
         if temp is not None:
             self.temperatureData = self.temperatureData[1:] + [temp]
         if voltage is not None:
@@ -68,7 +86,15 @@ class GraphWindow(QWidget):
         self.canvas.draw()
 
     def stop_plot(self):
+        """
+        Stop the timer for updating graph\n
+        """
         self.timer.stop()
 
     def onGraphHandler(self, dataList):
+        """
+        Start a thread to update the plot with values from dataList\n
+        :param dataList: List with temperature and voltage
+        :type dataList: list
+        """
         threading.Thread(target=self.update_plot, args=(dataList[0], dataList[1])).start()

@@ -3,7 +3,7 @@ import threading
 from PyQt5 import QtCore
 from PyQt5.QtCore import QRect, QSize
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QFrame, QLabel
+from PyQt5.QtWidgets import QFrame, QLabel, QWidget
 
 from customWidgets.components.customButton import CustomButton
 from customWidgets.components.customCheckBox import CustomCheckBox
@@ -13,12 +13,19 @@ from customWidgets.windows.motorStateWindow import FlagsWindow
 from customWidgets.windows.speedWindow import SpeedWindow
 from customWidgets.windows.temperatureWindow import TemperatureWindow
 from customWidgets.windows.voltageWindow import VoltageWindow
-from testExecution.testExecution import TestExecution
+from testExecution.testExecution import TestExecution, Server
 
 
 class TestCasesFrame(QFrame):
 
     def __init__(self, parent, server):
+        """
+        Initialize the test cases frame\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        :param server: A reference to application server
+        :type server: Server
+        """
         super(TestCasesFrame, self).__init__(parent)
         self.server = server
         # labels
@@ -66,6 +73,9 @@ class TestCasesFrame(QFrame):
         self.setupUi()
 
     def setupUi(self):
+        """
+        Set up frame size and components\n
+        """
         font = QFont()
         font.setFamily("Calibri")
         font.setPointSize(14)
@@ -243,6 +253,13 @@ class TestCasesFrame(QFrame):
         self.testExecution.stop_test_signal.connect(lambda: self.stopTestButton(signal=True))
 
     def updateWindowFlag(self, state, flagName):
+        """
+        Update which test will be run\n
+        :param state: State of testcase. 1 - not run  /  2 - run
+        :type state: int
+        :param flagName: Name of testcase to run
+        :type flagName: str
+        """
         if flagName == "temperature":
             if state == 2:
                 self.temperatureWindowOn = True
@@ -260,6 +277,9 @@ class TestCasesFrame(QFrame):
                 self.speedWindowOn = False
 
     def startTestButton(self):
+        """
+        Function to start the test execution\n
+        """
         if self.server.connected:
             if self.temperatureWindowOn:
                 self.temperatureWindow.show()
@@ -275,6 +295,11 @@ class TestCasesFrame(QFrame):
             threading.Thread(target=self.testExecution.startTest, args=(self.server, )).start()
 
     def stopTestButton(self, signal=False):
+        """
+        Stop test execution\n
+        :param signal: True if stopped from error or test finished and False if stopped by user
+        :type signal: bool
+        """
         print(signal)
         if self.temperatureWindowOn:
             self.temperatureWindow.hide()
@@ -292,12 +317,25 @@ class TestCasesFrame(QFrame):
             self.testExecution.stopTest(self.server, "Test stopped by user")
 
     def onSliderChangedHandler(self, value):
+        """
+        Handler for moving the speed slider\n
+        :param value: Speed value taken from slider
+        :type value: int
+        """
         self.testExecution.setMotorSpeed(value)
 
     def onChangeDirectionHandler(self, value):
+        """
+        Handler for changing motor direction\n
+        :param value: Value of direction (1 for clockwise or 2 for counterclockwise)
+        :type value: int
+        """
         self.testExecution.setMotorDirection(value)
 
     def determineTestcase(self):
+        """
+        Unused function!
+        """
         self.testExecution.testCase = 6
         # if self.temperatureWindowOn:
         #     if self.voltageWindowOn:
@@ -319,5 +357,10 @@ class TestCasesFrame(QFrame):
 
     @QtCore.pyqtSlot()
     def onCounterChange(self, value):
+        """
+        Set progress bar value in function of parameter\n
+        :param value: Value of progress bar
+        :type value: int
+        """
         self.progressBar.setValue(value)
 

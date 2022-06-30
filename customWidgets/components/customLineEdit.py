@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtWidgets import QLineEdit, QWidget
 
 style = """
 QLineEdit {{
@@ -21,8 +21,13 @@ QLineEdit:focus {{
 
 
 class CustomLineEdit(QLineEdit):
-    def __init__(self, container):
-        super(CustomLineEdit, self).__init__(container)
+    def __init__(self, parent):
+        """
+        Initialize lide edit component
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
+        super(CustomLineEdit, self).__init__(parent)
         self.setAlignment(Qt.AlignCenter)
 
     def setLineEditStyle(self,
@@ -36,7 +41,27 @@ class CustomLineEdit(QLineEdit):
                          borderColorFocus="#E47900",
                          bgColorFocus="rgb(43, 45, 56)"
                          ):
-
+        """
+        Set line edit style
+        :param borderSize: Border Size
+        :type borderSize: int
+        :param borderColor: Border color
+        :type borderColor: str
+        :param borderRadius: Border radius
+        :type borderRadius: int
+        :param color: Text color
+        :type color: str
+        :param paddingSize: Padding size
+        :type paddingSize: int
+        :param bgColor: Background color
+        :type bgColor: str
+        :param borderColorHover: Border Color hover
+        :type borderColorHover: str
+        :param borderColorFocus: Border Color Focus
+        :type borderColorFocus: str
+        :param bgColorFocus: Background color focus
+        :type bgColorFocus: str
+        """
         adjustedStyle = style.format(
             borderSize=borderSize,
             borderColor=borderColor,

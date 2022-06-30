@@ -1,6 +1,6 @@
 import time
 
-from PyQt5.QtWidgets import QProgressBar
+from PyQt5.QtWidgets import QProgressBar, QWidget
 
 
 style = """
@@ -20,12 +20,22 @@ QProgressBar::chunk {{
 
 class CustomProgressBar(QProgressBar):
     def __init__(self, parent=None):
+        """
+        Initialize progress bar component\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
         super().__init__(parent)
         self.setMaximum(100)
         self._active = False
         self.setValue(0)
 
     def updateBar(self, i):
+        """
+        Update progress bar value\n
+        :param i: Increment value
+        :type i: int
+        """
         while True:
             time.sleep(0.01)
             value = self.value() + i
@@ -38,5 +48,8 @@ class CustomProgressBar(QProgressBar):
                 break
 
     def setProgressBarStyle(self):
+        """
+        Set progress bar style
+        """
         adjustedStyle = style.format(bgColor="#de7c09")
         self.setStyleSheet(adjustedStyle)

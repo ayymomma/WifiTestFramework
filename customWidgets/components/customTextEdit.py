@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QTextEdit
+from PyQt5.QtWidgets import QTextEdit, QWidget
 
 style = """
 QTextEdit {{
@@ -14,8 +14,13 @@ QTextEdit {{
 
 
 class CustomTextEdit(QTextEdit):
-    def __init__(self, container):
-        super(CustomTextEdit, self).__init__(container)
+    def __init__(self, parent):
+        """
+        Initialize text edit component\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
+        super(CustomTextEdit, self).__init__(parent)
 
     def setTextStyle(self,
                      bgColor="#1e2229",
@@ -23,6 +28,17 @@ class CustomTextEdit(QTextEdit):
                      color="rgb(226, 226, 226)",
                      borderColor="#E47900"
                      ):
+        """
+        Set the style of component\n
+        :param bgColor: Background color
+        :type bgColor: str
+        :param paddingTop: Top padding
+        :type paddingTop: int
+        :param color: Text color
+        :type color: str
+        :param borderColor: Border color
+        :type borderColor: str
+        """
         adjustedStyle = style.format(
             bgColor=bgColor,
             paddingTop=paddingTop,

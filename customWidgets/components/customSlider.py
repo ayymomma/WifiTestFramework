@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QSlider
+from PyQt5.QtWidgets import QSlider, QWidget
 
 style = """
 QSlider {{ 
@@ -25,8 +25,13 @@ QSlider::handle:horizontal:pressed {{ background-color: {handleColorPressed}; }}
 
 
 class CustomSlider(QSlider):
-    def __init__(self, container):
-        super(CustomSlider, self).__init__(container)
+    def __init__(self, parent):
+        """
+        Initialize slider component\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
+        super(CustomSlider, self).__init__(parent)
         self.setMaximum(250)
 
     def setSliderStyle(self, margin=0,
@@ -41,6 +46,31 @@ class CustomSlider(QSlider):
                        handleColorHover="#FF9C2B",
                        handleColorPressed="#A57947"
                        ):
+        """
+        Set Slider style\n
+        :param margin: Margin of slider
+        :type margin: int
+        :param bgSize: Background size ( Height )
+        :type bgSize: int
+        :param bgRadius: Background radius
+        :type bgRadius: int
+        :param bgColor: Background color
+        :type bgColor: str
+        :param bgColorHover: Background hover color
+        :type bgColorHover: str
+        :param handleMargin: Handler margin
+        :type handleMargin: int
+        :param handleSize: Handler size
+        :type handleSize: int
+        :param handleRadius: Handler radius
+        :type handleRadius: int
+        :param handleColor: Handler color
+        :type handleColor: str
+        :param handleColorHover: Handler hover color
+        :type handleColorHover: str
+        :param handleColorPressed: Handler pressed color
+        :type handleColorPressed: str
+        """
         adjustedStyle = style.format(
             margin=margin,
             bgSize=bgSize,
@@ -57,4 +87,9 @@ class CustomSlider(QSlider):
         self.setStyleSheet(adjustedStyle)
 
     def getValue(self):
+        """
+        Get slider value\n
+        :return: Slider value in raport with motor speed
+        :rtype: int
+        """
         return int((self.value() * 13000) / 250)

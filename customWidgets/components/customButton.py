@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QPushButton, QWidget
 
 
 style = """
@@ -30,8 +30,15 @@ QPushButton:pressed {{
 
 
 class CustomButton(QPushButton):
-    def __init__(self, container, buttonName):
-        super(CustomButton, self).__init__(container)
+    def __init__(self, parent, buttonName):
+        """
+        Initialize button component
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        :param buttonName: Name of button
+        :type buttonName: str
+        """
+        super(CustomButton, self).__init__(parent)
         self.setText(buttonName)
 
     def setButtonStyle(self,
@@ -43,6 +50,23 @@ class CustomButton(QPushButton):
                        bgColorPressed="#FF9C2B",
                        borderRadius=5
                        ):
+        """
+        Set component style\n
+        :param bgColor: Background color
+        :type bgColor: str
+        :param paddingTop: Padding  top
+        :type paddingTop: int
+        :param color: Text color
+        :type color: str
+        :param borderColor: Border color
+        :type borderColor: str
+        :param bgColorHover: Background color hover
+        :type bgColorHover: str
+        :param bgColorPressed: Background color pressed
+        :type bgColorPressed: str
+        :param borderRadius: Border Radius
+        :type borderRadius: int
+        """
         adjustedStyle = style.format(
             bgColor=bgColor,
             paddingTop=paddingTop,

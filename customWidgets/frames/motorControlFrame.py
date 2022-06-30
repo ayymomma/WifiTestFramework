@@ -2,7 +2,7 @@ import os
 
 from PyQt5.QtCore import QRect, QSize, Qt, pyqtSignal
 from PyQt5.QtGui import QPixmap, QFont
-from PyQt5.QtWidgets import QFrame, QLabel
+from PyQt5.QtWidgets import QFrame, QLabel, QWidget
 
 from customWidgets.components.customButton import CustomButton
 from customWidgets.components.customLineEdit import CustomLineEdit
@@ -13,8 +13,13 @@ class MotorControlFrame(QFrame):
     speed_data_signal = pyqtSignal(int)
     direction_data_signal = pyqtSignal(str)
 
-    def __init__(self, container):
-        super(MotorControlFrame, self).__init__(container)
+    def __init__(self, parent):
+        """
+        Initialize the component
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
+        super(MotorControlFrame, self).__init__(parent)
 
         self.logoImage = QLabel(self)
         self.frameName = QLabel(self)
@@ -28,6 +33,9 @@ class MotorControlFrame(QFrame):
         self.setupUi()
 
     def setupUi(self):
+        """
+        Set up frame size and components
+        """
         font = QFont()
         font.setFamily("Calibri")
         font.setPointSize(14)
@@ -105,12 +113,25 @@ class MotorControlFrame(QFrame):
         font.setPointSize(14)
 
     def setLogoImage(self, photoName):
+        """
+        Set logo image in interface\n
+        :param photoName: Image name with extension
+        :type photoName: str
+        """
         pixmap = QPixmap("resources" + os.path.sep + "images" + os.path.sep + photoName)
         self.logoImage.setPixmap(pixmap)
 
     def sendSpeedData(self):
+        """
+        Emit specific signal to send data to test cases frame and set speed line edit value\n
+        """
         self.speed_data_signal.emit(self.speedSlider.value())
         self.speedLineEdit.setText(str(self.speedSlider.getValue()) + " RPM")
 
     def sendDirectionData(self, value):
+        """
+        Emit specific signal with direction value to test cases frame\n
+        :param value: Direction value
+        :type value: int
+        """
         self.direction_data_signal.emit(value)

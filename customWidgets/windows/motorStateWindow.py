@@ -2,7 +2,9 @@ import threading
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtGui import QMouseEvent
 from PyQt5.QtWidgets import QWidget, QDialog
+
 
 from customWidgets.components.customLineEdit import CustomLineEdit
 
@@ -11,10 +13,20 @@ class MyGraphicsView(QtWidgets.QGraphicsView):
     mouse_pos_signal = pyqtSignal(float)
 
     def __init__(self, parent):
+        """
+        Initialize graphics view component\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
         QtWidgets.QGraphicsView.__init__(self, parent)
         self.setMouseTracking(True)
 
     def mouseMoveEvent(self, event):
+        """
+        Emit a signal when mouse moved\n
+        :param event: Mouse event
+        :type event: QMouseEvent
+        """
         x_value_mouse_move = event.pos().x()
         self.mouse_pos_signal.emit(x_value_mouse_move)
         print(event.pos().x())
@@ -23,6 +35,11 @@ class MyGraphicsView(QtWidgets.QGraphicsView):
 class FlagsWindow(QDialog):
 
     def __init__(self, parent=None):
+        """
+        Initialize motor state window\n
+        :param parent: Reference of the component to which the window belongs
+        :type parent: QWidget
+        """
         super(FlagsWindow, self).__init__(parent)
         self.x_value_mouse_move = 0
         self.thr = None
@@ -51,6 +68,9 @@ class FlagsWindow(QDialog):
         self.graphicsView.mouse_pos_signal.connect(self.getXValue)
 
     def setupUi(self):
+        """
+        Set up window size and components
+        """
         self.setObjectName("Form")
         self.resize(1100, 400)
         self.setStyleSheet("background-color: #30363F;")
@@ -120,8 +140,15 @@ class FlagsWindow(QDialog):
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def draw_flags(self, x_vals, y_temp_vals, y_voltage_vals):
-
-
+        """
+        Draws a graphic for temperature state and voltage state\n
+        :param x_vals: X values of graph
+        :type x_vals: list
+        :param y_temp_vals: Y temperature values for graph
+        :type y_temp_vals: list
+        :param y_voltage_vals: Y voltage values for graph
+        :type y_voltage_vals: list
+        """
         self.scene = QtWidgets.QGraphicsScene()
         self.graphicsView.setScene(self.scene)
 
@@ -214,6 +241,9 @@ class FlagsWindow(QDialog):
         self.thr.start()
 
     def change_values(self):
+        """
+        Show values in the left table from interface in function of mouse position\n
+        """
         while not self.stop:
             try:
                 self.temperatureLineEdit.setText(str(self.y_temp[int(self.x_value_mouse_move / 20 + 1)]))
@@ -223,7 +253,17 @@ class FlagsWindow(QDialog):
                 print("IndexError")
 
     def getXValue(self, value):
+        """
+        Set mouse x position\n
+        :param value: Mouse x position
+        :type value: int
+        """
         self.x_value_mouse_move = value
 
     def closeEvent(self, event):
+        """
+        Close the entire window\n
+        :param event: Close event
+        :type event:
+        """
         self.stop = True
