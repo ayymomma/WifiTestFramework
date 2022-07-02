@@ -2,7 +2,6 @@ import time
 import matplotlib.pyplot as plt
 
 from PyQt5.QtCore import QObject, pyqtSignal
-from server import Server
 
 
 class TestExecution(QObject):
@@ -253,8 +252,8 @@ class TestExecution(QObject):
             self.print_message_signal.emit('Test failed!')
         if status.find("Motor") != -1:
             time.sleep(1)
-            self.print_message_signal.emit("Temperature:" + self.temperatureHumidity[0].split("=")[1])
+            self.print_message_signal.emit("Temperature:" + self.temperatureHumidity[2].split("=")[1])
         if status.find("H Bridge") != -1:
             time.sleep(1)
-            self.print_message_signal.emit("Temperature:" + self.temperatureHumidity[2].split("=")[1])
+            self.print_message_signal.emit("Temperature:" + self.temperatureHumidity[0].split("=")[1])
         self.stop_test_signal.emit()

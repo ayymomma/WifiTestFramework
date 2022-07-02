@@ -76,4 +76,4 @@ class SpeedWindow(QDialog):
         :param value: The value of speed
         :type value: float
         """
-        self.lineEditSpeed.setText(str(value) + " RPM")
+        self.lineEditSpeed.setText(str(int(value)) + " RPM")

@@ -5,7 +5,6 @@ from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtGui import QMouseEvent
 from PyQt5.QtWidgets import QWidget, QDialog
 
-
 from customWidgets.components.customLineEdit import CustomLineEdit
 
 
@@ -87,7 +86,7 @@ class FlagsWindow(QDialog):
         self.line_3.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
 
-        self.varNameLineEdit.setGeometry(QtCore.QRect(60, 11, 121, 41))
+        self.varNameLineEdit.setGeometry(QtCore.QRect(50, 11, 141, 41))
         self.varNameLineEdit.setLineEditStyle()
         self.varNameLineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.varNameLineEdit.setReadOnly(True)
@@ -122,7 +121,6 @@ class FlagsWindow(QDialog):
         self.voltageLineEdit.setGeometry(QtCore.QRect(300, 160, 113, 22))
         self.voltageLineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.voltageLineEdit.setLineEditStyle()
-
 
         self.motorStateLineEdit.setGeometry(QtCore.QRect(300, 280, 113, 22))
         self.motorStateLineEdit.setAlignment(QtCore.Qt.AlignCenter)

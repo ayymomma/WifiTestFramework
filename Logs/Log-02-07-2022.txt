@@ -1,0 +1,101 @@
+02/07/2022 15:54:03: Log file created
+02/07/2022 15:58:26: Log file created
+02/07/2022 15:58:47: Test started.
+02/07/2022 15:58:53: H Bridge temperature is out of range.
+02/07/2022 15:58:54: Test failed!
+02/07/2022 15:58:55: Temperature:29.20
+02/07/2022 15:59:44: Test started.
+02/07/2022 15:59:56: Test stopped by user
+02/07/2022 15:59:56: Test finished with no errors!
+02/07/2022 16:00:05: Test started.
+02/07/2022 16:00:35: Test finished with no errors!
+02/07/2022 16:01:00: Test started.
+02/07/2022 16:01:06: Motor temperature is out of range.
+02/07/2022 16:01:07: Test failed!
+02/07/2022 16:01:08: Temperature:29.60
+02/07/2022 16:53:26: Log file created
+02/07/2022 16:54:32: Log file created
+02/07/2022 16:55:36: Test started.
+02/07/2022 16:55:42: H Bridge temperature is out of range.
+02/07/2022 16:55:43: Test failed!
+02/07/2022 16:55:44: Temperature:30.70
+02/07/2022 16:57:08: Test started.
+02/07/2022 16:57:38: Test finished with no errors!
+02/07/2022 17:02:23: Test started.
+02/07/2022 17:02:23: Motor temperature is out of range.
+02/07/2022 17:02:24: Test failed!
+02/07/2022 17:02:25: Temperature:30.40
+02/07/2022 17:03:03: Test started.
+02/07/2022 17:03:03: Motor temperature is out of range.
+02/07/2022 17:03:04: Test failed!
+02/07/2022 17:03:05: Temperature:30.40
+02/07/2022 17:03:52: Test started.
+02/07/2022 17:04:22: Test finished with no errors!
+02/07/2022 17:04:46: Test started.
+02/07/2022 17:05:06: Test stopped by user
+02/07/2022 17:05:06: Test finished with no errors!
+02/07/2022 17:42:15: Log file created
+02/07/2022 17:45:59: Test started.
+02/07/2022 17:46:05: H Bridge temperature is out of range.
+02/07/2022 17:46:06: Test failed!
+02/07/2022 17:46:07: Temperature:30.50
+02/07/2022 17:46:59: Log file created
+02/07/2022 17:47:24: Test started.
+02/07/2022 17:47:30: H Bridge temperature is out of range.
+02/07/2022 17:47:31: Test failed!
+02/07/2022 17:47:32: Temperature:29.70
+02/07/2022 17:47:55: Test started.
+02/07/2022 17:48:09: Test stopped by user
+02/07/2022 17:48:09: Test finished with no errors!
+02/07/2022 17:54:32: Log file created
+02/07/2022 18:10:28: Log file created
+02/07/2022 18:11:05: Test started.
+02/07/2022 18:11:11: H Bridge temperature is out of range.
+02/07/2022 18:11:12: Test failed!
+02/07/2022 18:11:13: Temperature:30.00
+02/07/2022 18:11:20: Test started.
+02/07/2022 18:11:35: Test stopped by user
+02/07/2022 18:11:36: Test finished with no errors!
+02/07/2022 18:11:55: Test started.
+02/07/2022 18:12:15: Test stopped by user
+02/07/2022 18:12:16: Test finished with no errors!
+02/07/2022 18:12:25: Test started.
+02/07/2022 18:12:36: Test stopped by user
+02/07/2022 18:12:36: Test finished with no errors!
+02/07/2022 18:13:26: Test started.
+02/07/2022 18:13:26: H Bridge temperature is out of range.
+02/07/2022 18:13:27: Test failed!
+02/07/2022 18:13:28: Temperature:29.30
+02/07/2022 18:13:55: Test started.
+02/07/2022 18:14:25: Test finished with no errors!
+02/07/2022 18:15:56: Test started.
+02/07/2022 18:16:05: Motor temperature is out of range.
+02/07/2022 18:16:06: Test failed!
+02/07/2022 18:16:07: Temperature:31.50
+02/07/2022 18:19:05: Log file created
+02/07/2022 18:19:44: Test started.
+02/07/2022 18:20:20: Test finished with no errors!
+02/07/2022 18:20:30: Test started.
+02/07/2022 18:20:53: Test stopped by user
+02/07/2022 18:20:54: Test finished with no errors!
+02/07/2022 18:20:56: Test started.
+02/07/2022 18:20:56: H Bridge temperature is out of range.
+02/07/2022 18:20:57: Test failed!
+02/07/2022 18:20:58: Temperature:29.80
+02/07/2022 18:21:23: Test started.
+02/07/2022 18:21:23: H Bridge temperature is out of range.
+02/07/2022 18:21:24: Test failed!
+02/07/2022 18:21:25: Temperature:29.80
+02/07/2022 18:21:52: Test started.
+02/07/2022 18:21:52: Motor temperature is out of range.
+02/07/2022 18:21:53: Test failed!
+02/07/2022 18:21:54: Temperature:32.40
+02/07/2022 18:22:01: Test started.
+02/07/2022 18:22:12: Test stopped by user
+02/07/2022 18:22:12: Test finished with no errors!
+02/07/2022 18:22:16: Test started.
+02/07/2022 18:22:24: Test stopped by user
+02/07/2022 18:22:25: Test finished with no errors!
+02/07/2022 18:22:29: Test started.
+02/07/2022 18:22:37: Test stopped by user
+02/07/2022 18:22:38: Test finished with no errors!
