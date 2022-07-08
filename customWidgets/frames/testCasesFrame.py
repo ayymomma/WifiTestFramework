@@ -13,7 +13,7 @@ from customWidgets.windows.motorStateWindow import FlagsWindow
 from customWidgets.windows.speedWindow import SpeedWindow
 from customWidgets.windows.temperatureWindow import TemperatureWindow
 from customWidgets.windows.voltageWindow import VoltageWindow
-from testExecution.testExecution import TestExecution, Server
+from testExecution.testExecution import TestExecution
 
 
 class TestCasesFrame(QFrame):
